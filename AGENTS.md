@@ -11,27 +11,30 @@ Read these files before planning or implementing Portfolio V2 work:
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\current-state-audit.md`
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\proposed-architecture.md`
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\design-specification.md`
+- `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\architecture-decision.md`
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\implementation-plan.md`
 
 ## Repository Commands
 
-The current repository has no `package.json`, no package scripts, and no build configuration. Do not invent commands until the selected architecture setup phase creates them.
-
-| Purpose | Current verified command |
-| --- | --- |
-| Installation | No repository-defined install command exists. |
-| Development | No repository-defined development command exists. |
-| Linting | No repository-defined lint command exists. |
-| Type checking | No repository-defined type-check command exists. |
-| Testing | No repository-defined test command exists. |
-| Production build | No repository-defined build command exists. |
-| Preview | No repository-defined preview command exists. |
+| Purpose            | Current verified command         |
+| ------------------ | -------------------------------- |
+| Installation       | `pnpm install --frozen-lockfile` |
+| Development        | `pnpm dev`                       |
+| Linting            | `pnpm lint`                      |
+| Formatting         | `pnpm format`                    |
+| Type checking      | `pnpm type-check`                |
+| Unit testing       | `pnpm test`                      |
+| End-to-end testing | `pnpm test:e2e`                  |
+| Production build   | `pnpm build`                     |
+| Preview            | `pnpm preview -- --port 4322`    |
 
 Verified inspection commands:
 
 - `rg --files`
 - `git status --short`
 - `git diff --stat`
+
+Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so local validation does not write outside the repository.
 
 ## Coding Rules
 

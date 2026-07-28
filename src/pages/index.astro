@@ -1,0 +1,120 @@
+---
+import SkipLink from "../components/layout/SkipLink.astro";
+import SiteNav from "../components/navigation/SiteNav.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { architectureSummary } from "../data/foundation";
+import { availability, education } from "../data/experience";
+import { profile } from "../data/profile";
+import { getSelectedProjects } from "../data/projects";
+import { skillGroups } from "../data/skills";
+
+const selectedProjects = getSelectedProjects();
+---
+
+<BaseLayout
+  title="Portfolio V2 Foundation | Jared Baquirin"
+  description="Accessible Astro foundation shell for Jared Baquirin's Portfolio V2 migration."
+>
+  <SkipLink />
+  <header class="site-header">
+    <SiteNav />
+  </header>
+
+  <main id="main" class="site-main" tabindex="-1">
+    <section class="foundation-hero" aria-labelledby="foundation-title">
+      <p class="section-kicker">Astro static foundation</p>
+      <h1 id="foundation-title">Portfolio V2 foundation active</h1>
+      <p class="hero-lede">
+        {profile.name} - {profile.currentHeadline}. This temporary shell confirms the approved
+        architecture is running before the final KAISER SYSTEM visual redesign begins.
+      </p>
+      <dl class="architecture-list" aria-label="Approved architecture summary">
+        <div>
+          <dt>Framework</dt>
+          <dd>{architectureSummary.framework}</dd>
+        </div>
+        <div>
+          <dt>Language</dt>
+          <dd>{architectureSummary.language}</dd>
+        </div>
+        <div>
+          <dt>Deployment</dt>
+          <dd>{architectureSummary.deploymentTarget}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="profile" class="content-section" aria-labelledby="profile-title">
+      <p class="section-kicker">Profile</p>
+      <h2 id="profile-title">Current Verified Content</h2>
+      <p>{profile.currentPositioning}</p>
+      <p>{profile.about}</p>
+      <div class="fact-grid">
+        <article>
+          <h3>{education.label}</h3>
+          <p>{education.summary}</p>
+        </article>
+        <article>
+          <h3>{availability.label}</h3>
+          <p>{availability.summary}</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="content-section" aria-labelledby="skills-title">
+      <p class="section-kicker">Skills</p>
+      <h2 id="skills-title">Tech Stack</h2>
+      <div class="fact-grid">
+        {
+          skillGroups.map((group) => (
+            <article>
+              <h3>{group.title}</h3>
+              <p>{group.items.join(", ")}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="projects" class="content-section" aria-labelledby="projects-title">
+      <p class="section-kicker">Projects</p>
+      <h2 id="projects-title">Preserved Project Facts</h2>
+      <div class="project-list">
+        {
+          selectedProjects.map((project) => (
+            <article class="project-item">
+              <div>
+                <p class="project-status">{project.status}</p>
+                <h3>{project.title}</h3>
+              </div>
+              <p>{project.summary}</p>
+              <p class="project-tech">{project.technologies.join(", ")}</p>
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              ))}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="contact" class="content-section" aria-labelledby="contact-title">
+      <p class="section-kicker">Contact</p>
+      <h2 id="contact-title">Employment & Internship Inquiries</h2>
+      <p>{profile.opportunityStatement}</p>
+      <address class="contact-list">
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        <a href="tel:+639055460641">{profile.phone}</a>
+      </address>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Current static files remain preserved while this Astro foundation is validated. No final
+      visual redesign, animation stack, or holographic planet is implemented in this phase.
+    </p>
+  </footer>
+</BaseLayout>
