@@ -1,0 +1,17 @@
+---
+import SiteNav from "../navigation/SiteNav.astro";
+import SiteFooter from "./SiteFooter.astro";
+import SkipLink from "./SkipLink.astro";
+---
+
+<div id="top" class="site-shell">
+  <SkipLink />
+  <div class="atmosphere-layer" aria-hidden="true"></div>
+  <header class="site-header">
+    <SiteNav />
+  </header>
+  <main id="main" class="site-main" tabindex="-1">
+    <slot />
+  </main>
+  <SiteFooter />
+</div>

@@ -70,3 +70,19 @@ Date: 2026-07-28
 - The validation command chain was updated to pnpm: `pnpm lint`, `pnpm type-check`, `pnpm test`, and `pnpm build`.
 - Root cause of the pnpm failure: the repository had mixed npm and pnpm artifacts, plus unresolved pnpm build-script policy placeholders for `esbuild` and `sharp`.
 - Resolution: migrated the foundation metadata and workflow to pnpm, removed `package-lock.json`, added `packageManager: pnpm@11.9.0`, added the `type-check` script, and set `pnpm-workspace.yaml` build-script approvals to `esbuild: true` and `sharp: false`.
+
+## Phase 2 Design System Follow-Up
+
+- Preflight branch: `redesign/portfolio-v2`.
+- Preflight working tree: clean.
+- Preflight commands passed: `pnpm lint`, `pnpm type-check`, `pnpm test`, and `pnpm build`.
+- Added centralized semantic tokens in `src/styles/tokens.css`.
+- Replaced the temporary global shell styling with token-driven global styling in `src/styles/global.css`.
+- Added `PageShell`, `SectionShell`, and `SiteFooter` layout primitives.
+- Reworked `SiteNav` into desktop links plus a progressively enhanced mobile disclosure menu.
+- Added `src/scripts/navigation.ts` for mobile menu open, close, Escape, anchor-close, and focus behavior.
+- Added font strategy documentation in `public/assets/fonts/README.md`.
+- Added design-system notes in `docs/portfolio-v2/design-system-foundation.md`.
+- Added unit coverage for token presence and contrast.
+- Expanded E2E coverage for desktop navigation, mobile navigation, reduced motion, accessibility, and 320px through 1680px responsive widths.
+- Deferred active-section scroll tracking, final homepage sections, celestial planet, project case-study routes, section reveals, page transitions, and animation libraries.

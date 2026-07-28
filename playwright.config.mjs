@@ -7,7 +7,7 @@ export default defineConfig({
   testDir: "./tests/e2e",
   reporter: [["list"]],
   webServer: {
-    command: "npm run preview -- --port 4322",
+    command: "pnpm exec astro preview --host localhost --port 4322",
     url: previewUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 120000

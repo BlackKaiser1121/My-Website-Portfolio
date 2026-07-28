@@ -1,15 +1,29 @@
 ---
 const navItems = [
   { href: "#profile", label: "Profile" },
-  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
+  { href: "#architecture", label: "Architecture" },
+  { href: "#capabilities", label: "Capabilities" },
+  { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" }
 ];
 ---
 
-<nav class="site-nav" aria-label="Primary">
-  <p class="site-nav__mark">Jared Baquirin</p>
-  <ul class="site-nav__list">
+<nav class="site-nav" aria-label="Primary" data-site-nav data-nav-state="open">
+  <a class="site-nav__mark" href="./" aria-current="page">Jared Baquirin</a>
+  <button
+    class="site-nav__toggle"
+    type="button"
+    aria-label="Open navigation"
+    aria-expanded="false"
+    aria-controls="primary-navigation-menu"
+    data-nav-toggle
+  >
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
+  <ul id="primary-navigation-menu" class="site-nav__list" data-nav-menu>
     {
       navItems.map((item) => (
         <li>
@@ -19,3 +33,7 @@ const navItems = [
     }
   </ul>
 </nav>
+
+<script>
+  import "../../scripts/navigation";
+</script>

@@ -26,7 +26,7 @@ Read these files before planning or implementing Portfolio V2 work:
 | Unit testing       | `pnpm test`                      |
 | End-to-end testing | `pnpm test:e2e`                  |
 | Production build   | `pnpm build`                     |
-| Preview            | `pnpm preview -- --port 4322`    |
+| Preview            | `pnpm preview --port 4322`       |
 
 Verified inspection commands:
 
@@ -35,6 +35,15 @@ Verified inspection commands:
 - `git diff --stat`
 
 Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so local validation does not write outside the repository.
+
+## Portfolio V2 Structure
+
+- Design tokens live in `C:\Users\ranib\My-Website-Portfolio\src\styles\tokens.css`.
+- Global reset, typography, layout, navigation, footer, focus, and reduced-motion styles live in `C:\Users\ranib\My-Website-Portfolio\src\styles\global.css`.
+- Page shell primitives live in `C:\Users\ranib\My-Website-Portfolio\src\components\layout`.
+- Primary navigation lives in `C:\Users\ranib\My-Website-Portfolio\src\components\navigation\SiteNav.astro`.
+- Mobile navigation enhancement lives in `C:\Users\ranib\My-Website-Portfolio\src\scripts\navigation.ts`.
+- Font strategy is documented in `C:\Users\ranib\My-Website-Portfolio\public\assets\fonts\README.md`.
 
 ## Coding Rules
 
@@ -53,6 +62,7 @@ Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so 
 - Do not copy code, branding, text, or assets from inspiration websites.
 - Do not autoplay audio.
 - Do not implement scroll hijacking.
+- Do not create a second global token or styling system alongside `tokens.css` and `global.css`.
 - Avoid unnecessary client-side components.
 - Optimize images and fonts before launch.
 - Keep the mobile version functionally complete.
