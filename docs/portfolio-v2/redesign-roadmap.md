@@ -89,7 +89,7 @@ This roadmap is intentionally phased so each step can be reviewed, tested, and c
 - Goal: improve recruiter flow with verified experience, education, resume, and contact links.
 - Expected deliverable: experience/education section, resume link, GitHub profile, LinkedIn, email, and contact CTA.
 - Likely files involved: `C:\Users\ranib\My-Website-Portfolio\src\components\sections\ExperienceSection.astro`, `C:\Users\ranib\My-Website-Portfolio\src\components\sections\ContactSection.astro`, `C:\Users\ranib\My-Website-Portfolio\src\data\profile.ts`, `C:\Users\ranib\My-Website-Portfolio\public\assets\resume\`.
-- Dependencies: verified resume, LinkedIn URL, GitHub profile URL, and privacy decision for phone number.
+- Dependencies: supplied resume, LinkedIn URL, and GitHub profile URL are now available; phone visibility still needs a privacy decision before launch.
 - Validation steps: check links, download resume, inspect mobile contact layout, verify no fake experience.
 - Risks: exposing personal phone unintentionally, stale resume, unsupported experience claims.
 - Suggested commit boundary: `feat: add experience and contact flow`.

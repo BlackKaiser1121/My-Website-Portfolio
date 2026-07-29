@@ -1,5 +1,8 @@
 ---
+import { contactChannels } from "../../data/contact";
 import { profile } from "../../data/profile";
+
+const email = contactChannels.find((channel) => channel.icon === "mail");
 ---
 
 <footer class="site-footer">
@@ -8,7 +11,7 @@ import { profile } from "../../data/profile";
     <p>{profile.currentPositioning}</p>
   </div>
   <nav class="site-footer__links" aria-label="Footer">
-    <a href={`mailto:${profile.email}`}>Email Jared Baquirin</a>
+    <a href={email?.url ?? `mailto:${profile.email}`}>Email Jared Baquirin</a>
     <a href="#top">Back to top</a>
   </nav>
 </footer>

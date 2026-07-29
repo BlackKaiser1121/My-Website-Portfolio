@@ -1,12 +1,5 @@
 ---
-const navItems = [
-  { href: "#profile", label: "Profile" },
-  { href: "#projects", label: "Projects" },
-  { href: "#architecture", label: "Architecture" },
-  { href: "#capabilities", label: "Capabilities" },
-  { href: "#experience", label: "Experience" },
-  { href: "#contact", label: "Contact" }
-];
+import { navigationItems } from "../../data/navigation";
 ---
 
 <nav class="site-nav" aria-label="Primary" data-site-nav data-nav-state="open">
@@ -25,7 +18,7 @@ const navItems = [
   </button>
   <ul id="primary-navigation-menu" class="site-nav__list" data-nav-menu>
     {
-      navItems.map((item) => (
+      navigationItems.map((item) => (
         <li>
           <a href={item.href}>{item.label}</a>
         </li>

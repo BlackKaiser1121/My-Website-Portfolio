@@ -1,0 +1,37 @@
+---
+import { contactChannels, missingContactLinks } from "../../data/contact";
+import { profile } from "../../data/profile";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="contact" label="Contact" heading="Contact">
+  <div class="contact-panel">
+    <div class="section-copy">
+      <h3>Employment and Internship Inquiries</h3>
+      <p>{profile.opportunityStatement}</p>
+    </div>
+    <address class="contact-actions">
+      {
+        contactChannels.map((channel) => (
+          <a
+            href={channel.url}
+            aria-label={channel.accessibilityLabel}
+            target={channel.isExternal ? "_blank" : undefined}
+            rel={channel.isExternal ? "noopener noreferrer" : undefined}
+          >
+            {channel.label}
+          </a>
+        ))
+      }
+    </address>
+    {
+      missingContactLinks.length > 0 && (
+        <ul class="missing-link-list" aria-label="Unavailable contact links">
+          {missingContactLinks.map((item) => (
+            <li>{item} not verified yet</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</SectionShell>

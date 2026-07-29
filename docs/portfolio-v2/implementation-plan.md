@@ -420,7 +420,7 @@ Tech stack after setup: Astro, TypeScript, content collections, CSS tokens, GSAP
 3. Render Venora as a missing-content requirement rather than a fake project description.
 4. Render FAHAD and ResumeBridge from verified current summaries.
 5. Include a secondary archive area for Nightbank Finance.
-6. Add empty-state copy for missing resume, LinkedIn, GitHub profile, and Venora details.
+6. Add verified resume, LinkedIn, GitHub profile, and Venora links when supplied; keep empty-state copy only for unavailable links and assets.
 
 **Validation commands:**
 
@@ -1070,10 +1070,10 @@ Tech stack after setup: Astro, TypeScript, content collections, CSS tokens, GSAP
 
 **Implementation steps:**
 
-1. Keep `mailto:jaredfahad@gmail.com` as the primary contact action.
+1. Keep the latest verified resume email, `mailto:jared.baquirin112@gmail.com`, as the primary contact action.
 2. Confirm whether phone number should remain public before rendering it.
 3. Add LinkedIn and GitHub profile links only after verification.
-4. Add resume link only after a real file exists.
+4. Add resume link only after a real file exists under `public/assets/resume/`.
 5. Use missing-content text for absent profile links or resume.
 
 **Validation commands:**

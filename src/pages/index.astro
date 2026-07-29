@@ -1,123 +1,30 @@
 ---
+import ArchitecturePreviewSection from "../components/sections/ArchitecturePreviewSection.astro";
+import CapabilitiesSection from "../components/sections/CapabilitiesSection.astro";
+import ContactSection from "../components/sections/ContactSection.astro";
+import EducationSection from "../components/sections/EducationSection.astro";
+import ExperienceSection from "../components/sections/ExperienceSection.astro";
+import PrinciplesSection from "../components/sections/PrinciplesSection.astro";
+import ProfileSection from "../components/sections/ProfileSection.astro";
+import SelectedProjectsSection from "../components/sections/SelectedProjectsSection.astro";
+import HeroSection from "../components/hero/HeroSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageShell from "../components/layout/PageShell.astro";
-import SectionShell from "../components/layout/SectionShell.astro";
-import { architectureSummary } from "../data/foundation";
-import { availability, education } from "../data/experience";
-import { profile } from "../data/profile";
-import { getSelectedProjects } from "../data/projects";
-import { skillGroups } from "../data/skills";
-
-const selectedProjects = getSelectedProjects();
 ---
 
 <BaseLayout
-  title="Portfolio V2 Foundation | Jared Baquirin"
-  description="Accessible Astro foundation shell for Jared Baquirin's Portfolio V2 migration."
+  title="Jared Baquirin - Full-Stack Developer, QA, UI/UX"
+  description="Static Portfolio V2 homepage for Jared Baquirin, focused on full-stack development, QA, UI/UX, and verified project work."
 >
   <PageShell>
-    <section class="intro-section" aria-labelledby="foundation-title">
-      <div class="intro-section__content">
-        <p class="metadata-label">Astro static foundation</p>
-        <h1 id="foundation-title">Portfolio V2 foundation active</h1>
-        <p class="hero-lede">
-          {profile.name} - {profile.currentHeadline}. This responsive shell establishes the approved
-          KAISER SYSTEM design system before the final homepage, motion, or celestial planet phases
-          begin.
-        </p>
-      </div>
-    </section>
-
-    <SectionShell id="profile" label="Profile" heading="Current Verified Content">
-      <p>{profile.currentPositioning}</p>
-      <p>{profile.about}</p>
-      <div class="content-grid">
-        <article class="content-card">
-          <h3>{education.label}</h3>
-          <p>{education.summary}</p>
-        </article>
-        <article class="content-card">
-          <h3>{availability.label}</h3>
-          <p>{availability.summary}</p>
-        </article>
-      </div>
-    </SectionShell>
-
-    <SectionShell id="projects" label="Projects" heading="Preserved Project Facts">
-      <div class="project-list">
-        {
-          selectedProjects.map((project) => (
-            <article class="project-item">
-              <div>
-                <p class="project-status">{project.status}</p>
-                <h3>{project.title}</h3>
-              </div>
-              <p>{project.summary}</p>
-              <p class="project-tech">{project.technologies.join(", ")}</p>
-              {project.links.map((link) => (
-                <a href={link.href} target="_blank" rel="noreferrer">
-                  {link.label}
-                </a>
-              ))}
-            </article>
-          ))
-        }
-      </div>
-    </SectionShell>
-
-    <SectionShell id="architecture" label="Architecture" heading="Static-First System">
-      <p>
-        Portfolio V2 is migrating from static HTML and CSS to Astro, TypeScript, content
-        collections, and GitHub Pages static deployment.
-      </p>
-      <dl class="architecture-list" aria-label="Approved architecture summary">
-        <div>
-          <dt>Framework</dt>
-          <dd>{architectureSummary.framework}</dd>
-        </div>
-        <div>
-          <dt>Language</dt>
-          <dd>{architectureSummary.language}</dd>
-        </div>
-        <div>
-          <dt>Deployment</dt>
-          <dd>{architectureSummary.deploymentTarget}</dd>
-        </div>
-      </dl>
-    </SectionShell>
-
-    <SectionShell id="capabilities" label="Capabilities" heading="Tech Stack">
-      <div class="content-grid">
-        {
-          skillGroups.map((group) => (
-            <article class="content-card">
-              <h3>{group.title}</h3>
-              <p>{group.items.join(", ")}</p>
-            </article>
-          ))
-        }
-      </div>
-    </SectionShell>
-
-    <SectionShell id="experience" label="Experience" heading="Education And Availability">
-      <div class="content-grid">
-        <article class="content-card">
-          <h3>{education.label}</h3>
-          <p>{education.summary}</p>
-        </article>
-        <article class="content-card">
-          <h3>{availability.label}</h3>
-          <p>{availability.summary}</p>
-        </article>
-      </div>
-    </SectionShell>
-
-    <SectionShell id="contact" label="Contact" heading="Employment & Internship Inquiries">
-      <p>{profile.opportunityStatement}</p>
-      <address class="contact-list">
-        <a href={`mailto:${profile.email}`}>{profile.email}</a>
-        <a href="tel:+639055460641">{profile.phone}</a>
-      </address>
-    </SectionShell>
+    <HeroSection />
+    <ProfileSection />
+    <SelectedProjectsSection />
+    <ArchitecturePreviewSection />
+    <CapabilitiesSection />
+    <ExperienceSection />
+    <EducationSection />
+    <PrinciplesSection />
+    <ContactSection />
   </PageShell>
 </BaseLayout>

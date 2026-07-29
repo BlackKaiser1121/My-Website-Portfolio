@@ -1,9 +1,57 @@
 ---
+id: "project-resumebridge"
+projectSlug: "resumebridge"
 title: "ResumeBridge"
-summary: "AI-powered career counseling platform. Analyzes resumes and generates compatibility scores with job recommendations."
+shortTitle: "ResumeBridge"
+summary: "AI resume analysis and job-description comparison with compatibility feedback."
+description: "ResumeBridge analyzes resumes against job descriptions, supports authentication and session isolation, and generates compatibility scoring, skill-gap feedback, and keyword feedback using PHP, object-oriented programming, PDO, MySQL, JavaScript, and Qwen3.6-Plus API integration through cURL."
+year: "Not verified"
 status: "active"
-priority: 2
+role: "Full-stack PHP development and AI API integration"
+responsibilities:
+  - "Built resume and job-description comparison flows"
+  - "Implemented PHP, object-oriented programming, PDO, and MySQL patterns"
+  - "Integrated the Qwen3.6-Plus API through cURL"
+  - "Supported authentication and session isolation"
+  - "Presented 0-100 compatibility scoring, skill-gap feedback, and keyword feedback"
 technologies:
   - "PHP"
-  - "MYSQL"
+  - "Object-oriented PHP"
+  - "PDO"
+  - "MySQL"
+  - "JavaScript"
+  - "Tailwind CSS"
+  - "Bootstrap"
+  - "Qwen3.6-Plus API"
+  - "cURL"
+category: "AI career tooling"
+featured: true
+order: 3
+thumbnail:
+  kind: "asset"
+  label: "ResumeBridge AI Job Finder screenshot"
+  src: "assets/projects/resumebridge-ai-job-finder.png"
+  alt: "ResumeBridge AI Job Finder analyzer screen showing ranked job recommendations"
+  width: 1896
+  height: 927
+screenshots:
+  - kind: "asset"
+    label: "ResumeBridge AI Job Finder screenshot"
+    src: "assets/projects/resumebridge-ai-job-finder.png"
+    alt: "ResumeBridge AI Job Finder analyzer screen showing ranked job recommendations"
+    width: 1896
+    height: 927
+repositoryUrl: "https://github.com/BlackKaiser1121/ResumeBridge"
+caseStudyAvailable: false
+caseStudySections:
+  - title: "Resume analysis workflow"
+    status: "planned"
+  - title: "Authentication and session isolation"
+    status: "planned"
+  - title: "AI API integration"
+    status: "planned"
+accessibilityLabel: "ResumeBridge project preview"
+missingContent:
+  - "live-url"
+  - "case-study"
 ---

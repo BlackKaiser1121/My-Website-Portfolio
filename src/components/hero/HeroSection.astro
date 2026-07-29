@@ -1,0 +1,37 @@
+---
+import { contactChannels } from "../../data/contact";
+import { profile } from "../../data/profile";
+import StaticPlanet from "./StaticPlanet.astro";
+
+const email = contactChannels.find((channel) => channel.icon === "mail");
+---
+
+<section id="hero" class="hero-section" aria-labelledby="hero-title">
+  <div class="hero-section__content">
+    <p class="metadata-label">KAISER SYSTEM / Static homepage</p>
+    <h1 id="hero-title">{profile.name}</h1>
+    <p class="hero-section__role">{profile.professionalRole}</p>
+    <p class="hero-lede">{profile.valueStatement}</p>
+    <div class="hero-actions" aria-label="Primary homepage actions">
+      <a class="button-link button-link--primary" href="#projects">View Selected Projects</a>
+      <a class="button-link" href={email?.url ?? "#contact"}>Contact Jared</a>
+    </div>
+    <dl class="hero-metadata" aria-label="Current portfolio metadata">
+      <div>
+        <dt>Focus</dt>
+        <dd>Static-first portfolio</dd>
+      </div>
+      <div>
+        <dt>Role</dt>
+        <dd>Full-stack / QA / UI/UX</dd>
+      </div>
+      <div>
+        <dt>Availability</dt>
+        <dd>Internship inquiries</dd>
+      </div>
+    </dl>
+  </div>
+  <div class="hero-section__visual">
+    <StaticPlanet />
+  </div>
+</section>

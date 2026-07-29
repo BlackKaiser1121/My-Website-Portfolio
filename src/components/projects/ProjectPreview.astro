@@ -1,0 +1,85 @@
+---
+import type { PortfolioProject } from "../../types/portfolio";
+
+interface Props {
+  project: PortfolioProject;
+  index: number;
+}
+
+const { project, index } = Astro.props;
+const projectNumber = String(index + 1).padStart(2, "0");
+---
+
+<article class="project-preview" aria-labelledby={`${project.slug}-title`}>
+  {
+    project.thumbnail.kind === "asset" ? (
+      <figure class="project-preview__visual project-preview__visual--asset">
+        <span aria-hidden="true">{projectNumber}</span>
+        <img
+          src={project.thumbnail.src}
+          alt={project.thumbnail.alt}
+          width={project.thumbnail.width}
+          height={project.thumbnail.height}
+          loading="eager"
+          decoding="async"
+        />
+      </figure>
+    ) : (
+      <div class="project-preview__visual" aria-hidden="true">
+        <span>{projectNumber}</span>
+        <p>{project.thumbnail.label}</p>
+      </div>
+    )
+  }
+  <div class="project-preview__content">
+    <p class="project-status">{project.category} / {project.status}</p>
+    <h3 id={`${project.slug}-title`}>{project.title}</h3>
+    <p>{project.summary}</p>
+    <p>{project.description}</p>
+
+    <dl class="project-preview__meta">
+      <div>
+        <dt>Role</dt>
+        <dd>{project.role}</dd>
+      </div>
+      <div>
+        <dt>Year</dt>
+        <dd>{project.year}</dd>
+      </div>
+    </dl>
+
+    <div>
+      <p class="project-preview__label">Responsibilities</p>
+      <ul class="project-preview__list">
+        {project.responsibilities.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+
+    <div>
+      <p class="project-preview__label">Technologies</p>
+      <ul class="technology-list" aria-label={`${project.shortTitle} technologies`}>
+        {project.technologies.map((technology) => <li>{technology}</li>)}
+      </ul>
+    </div>
+
+    <div class="project-actions" aria-label={`${project.shortTitle} actions`}>
+      {
+        project.repositoryUrl ? (
+          <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+            Open {project.shortTitle} repository
+          </a>
+        ) : (
+          <span>Repository link not verified</span>
+        )
+      }
+      {project.liveUrl && <a href={project.liveUrl}>Open {project.shortTitle} live demo</a>}
+      {
+        project.caseStudyAvailable ? (
+          <a href={`./projects/${project.slug}/`}>Open {project.shortTitle} case study</a>
+        ) : (
+          <span>Case study not available yet</span>
+        )
+      }
+    </div>
+  </div>
+</article>

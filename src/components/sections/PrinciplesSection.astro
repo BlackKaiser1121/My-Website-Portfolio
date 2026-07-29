@@ -1,0 +1,18 @@
+---
+import { developmentPrinciples } from "../../data/principles";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="principles" label="Principles" heading="Development Principles">
+  <div class="principle-list">
+    {
+      developmentPrinciples.map((principle) => (
+        <article class="principle-item">
+          <h3>{principle.title}</h3>
+          <p>{principle.explanation}</p>
+          <p class="project-tech">Evidence: {principle.evidence}</p>
+        </article>
+      ))
+    }
+  </div>
+</SectionShell>

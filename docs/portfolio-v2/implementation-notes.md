@@ -41,8 +41,6 @@ Date: 2026-07-28
 
 ## Known Limitations
 
-- Resume file is still missing.
-- Social links are still missing.
 - Project screenshots are still missing.
 - Only the homepage foundation route exists.
 - Production deployment was configured but not triggered from this branch.
@@ -86,3 +84,21 @@ Date: 2026-07-28
 - Added unit coverage for token presence and contrast.
 - Expanded E2E coverage for desktop navigation, mobile navigation, reduced motion, accessibility, and 320px through 1680px responsive widths.
 - Deferred active-section scroll tracking, final homepage sections, celestial planet, project case-study routes, section reveals, page transitions, and animation libraries.
+
+## Phase 3 Static Homepage Follow-Up
+
+- Preflight branch: `redesign/portfolio-v2`.
+- Preflight working tree: clean.
+- Preflight commands passed before edits: `pnpm lint`, `pnpm type-check`, `pnpm test`, and `pnpm build`.
+- Added content inventory at `docs/portfolio-v2/content-inventory.md`.
+- Added static homepage structure notes at `docs/portfolio-v2/static-homepage-structure.md`.
+- Added shared content interfaces in `src/types/portfolio.ts`.
+- Added or expanded typed content modules for profile, navigation, contact, projects, capabilities, experience, education, principles, and architecture preview under `src/data/`.
+- Expanded the Astro project collection schema and added a Venora collection stub while keeping case-study routes deferred.
+- Implemented static homepage sections for hero, professional profile, selected projects, architecture preview, engineering capabilities, experience, education, development principles, and contact.
+- Implemented `src/components/hero/StaticPlanet.astro` as a decorative CSS-only placeholder with no canvas, WebGL, JavaScript, or animation loop.
+- Implemented FAHAD architecture preview as a static ordered flow with a text alternative.
+- Added tests for featured project order, unique IDs/slugs, required content fields, valid protocols, missing-link behavior, homepage sections, heading hierarchy, project previews, static planet accessibility, axe smoke testing, and responsive overflow.
+- Missing content remains documented: project screenshots, case-study pages, verified paid/volunteer experience, favicon, and social preview images.
+- July 29 content-link follow-up added the user-supplied GitHub profile, LinkedIn profile, Venora repository, Venora live-demo link, ResumeBridge repository confirmation, FAHAD repository confirmation, supplied resume DOCX asset, updated resume email, Cavite location, BSCS institution/timeline, and StartupLab QA/UI/UX internship entry.
+- No GSAP, `@gsap/react`, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or particle libraries were installed.

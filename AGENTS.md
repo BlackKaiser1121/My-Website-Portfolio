@@ -44,12 +44,19 @@ Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so 
 - Primary navigation lives in `C:\Users\ranib\My-Website-Portfolio\src\components\navigation\SiteNav.astro`.
 - Mobile navigation enhancement lives in `C:\Users\ranib\My-Website-Portfolio\src\scripts\navigation.ts`.
 - Font strategy is documented in `C:\Users\ranib\My-Website-Portfolio\public\assets\fonts\README.md`.
+- Shared Portfolio V2 content types live in `C:\Users\ranib\My-Website-Portfolio\src\types\portfolio.ts`.
+- Static homepage content lives in focused modules under `C:\Users\ranib\My-Website-Portfolio\src\data`.
+- Static homepage sections live in `C:\Users\ranib\My-Website-Portfolio\src\components\sections`.
+- Static hero and planet placeholder live in `C:\Users\ranib\My-Website-Portfolio\src\components\hero`.
+- Project previews live in `C:\Users\ranib\My-Website-Portfolio\src\components\projects\ProjectPreview.astro`.
+- Architecture preview UI lives in `C:\Users\ranib\My-Website-Portfolio\src\components\architecture\ArchitectureDiagram.astro`.
 
 ## Coding Rules
 
 - Use strict TypeScript once the selected Astro architecture is introduced.
 - Prefer small components with one responsibility.
 - Keep content separate from presentation where practical.
+- Do not hardcode profile, navigation, project, capability, experience, education, principle, or contact facts inside section components when a `src\data` module already owns that content.
 - Do not place an entire page in one oversized component.
 - Preserve semantic HTML and real document landmarks.
 - Maintain keyboard accessibility and visible focus states.

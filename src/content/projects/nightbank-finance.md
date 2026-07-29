@@ -1,9 +1,36 @@
 ---
+id: "project-nightbank-finance"
+projectSlug: "nightbank-finance"
 title: "Nightbank Finance"
-summary: "A banking simulator where users can manage their finances, invest in a dynamic stock market, take out loans, and play arcade games - all without ever needing an internet connection."
+shortTitle: "Nightbank"
+summary: "Offline banking simulator with finance management, stock market, loans, and arcade games."
+description: "Nightbank Finance is a banking simulator where users can manage finances, invest in a dynamic stock market, take out loans, and play arcade games without needing an internet connection."
+year: "Not verified"
 status: "deployed"
-priority: 3
+role: "Personal project development"
+responsibilities:
+  - "Built finance-management simulation features"
+  - "Implemented stock-market and loan gameplay concepts"
+  - "Supported offline play"
 technologies:
   - "PHP"
   - "AI/ML"
+category: "Finance simulator"
+featured: false
+order: 4
+thumbnail:
+  kind: "placeholder"
+  label: "Finance simulator placeholder"
+  accessibilityLabel: "Decorative Nightbank Finance project visual placeholder"
+screenshots: []
+repositoryUrl: "https://github.com/BlackKaiser1121/NightBank-Finance"
+caseStudyAvailable: false
+caseStudySections:
+  - title: "Archive project overview"
+    status: "planned"
+accessibilityLabel: "Nightbank Finance project preview"
+missingContent:
+  - "project-screenshots"
+  - "case-study"
+  - "live-url"
 ---

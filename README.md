@@ -2,7 +2,7 @@
 
 Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro foundation. The active foundation toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
 
-The current phase implements the design-system foundation and responsive shell. It does not implement the full homepage, holographic planet, GSAP, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or decorative animations.
+The current phase implements the static homepage structure, typed portfolio content, selected project previews, and a CSS-only static celestial placeholder. It does not implement case-study pages, the enhanced holographic planet, GSAP, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or decorative animations.
 
 ## Commands
 
@@ -43,6 +43,10 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - Navigation: `src/components/navigation/SiteNav.astro`
 - Mobile navigation behavior: `src/scripts/navigation.ts`
 - Font strategy: `public/assets/fonts/README.md`
+- Static hero: `src/components/hero/HeroSection.astro`
+- Static planet placeholder: `src/components/hero/StaticPlanet.astro`
+- Project preview component: `src/components/projects/ProjectPreview.astro`
+- Homepage sections: `src/components/sections/`
 
 The palette uses near-black, graphite, soft-white text, and electric green as a restrained accent for focus, active states, small labels, and thin interface details.
 
@@ -58,12 +62,22 @@ The local Playwright config uses installed Chrome on Windows when not running in
 
 - Existing `index.html` and `style.css` are preserved as the rollback path.
 - Current verified portfolio facts are separated into typed data modules under `src/data/`.
-- Current project facts are mirrored in `src/content/projects/` to establish Astro content collections.
-- The homepage route has the design-system shell with header, main, footer, skip link, responsive navigation, and preserved contact/project facts.
+- Shared content interfaces live in `src/types/portfolio.ts`.
+- Current project facts are mirrored in `src/content/projects/` to establish Astro content collections for later case-study routes.
+- The homepage route now renders the static content hierarchy: hero, profile, selected projects, architecture preview, capabilities, experience, education, development principles, and contact.
+- The supplied resume DOCX is available at `public/assets/resume/jared-fahad-baquirin-resume.docx`.
+
+## Content Editing
+
+- Update typed homepage content in `src/data/`.
+- Keep unavailable URLs as omitted optional properties, not empty strings.
+- Add project images only after files exist under `public/assets/projects/` with accurate alt text and dimensions.
+- Update `docs/portfolio-v2/content-inventory.md` when facts move from missing or unverified to verified.
+- Run `pnpm test` and `pnpm test:e2e` after content changes.
 
 ## Known Limitations
 
-- The design-system foundation is in place, but the final homepage content sections have not started.
-- The holographic planet and animation system are intentionally absent.
-- Resume file, social links, and project screenshots are still missing from the repository.
-- Only the homepage foundation route exists in this phase.
+- Dedicated project case-study pages have not started.
+- The enhanced holographic planet and animation system are intentionally absent.
+- Project screenshots, favicon, and social preview images are still missing from the repository.
+- ResumeBridge has no deployment link and is intentionally rendered without a live-demo anchor.

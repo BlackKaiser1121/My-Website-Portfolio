@@ -94,7 +94,7 @@ Breakpoints are content-driven:
 
 ## Known Limitations
 
-- Resume file, social links, and project screenshots remain missing.
+- Project screenshots remain missing; the supplied resume file and social links are now available through the contact content layer.
 - Footer does not include GitHub or LinkedIn because verified profile/social URLs are not available.
 - Final homepage sections are not implemented.
 - Project case-study pages are not implemented.

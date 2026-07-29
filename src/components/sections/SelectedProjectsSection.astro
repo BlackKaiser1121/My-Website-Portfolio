@@ -1,0 +1,20 @@
+---
+import { getFeaturedProjects } from "../../data/projects";
+import ProjectPreview from "../projects/ProjectPreview.astro";
+import SectionShell from "../layout/SectionShell.astro";
+
+const featuredProjects = getFeaturedProjects();
+---
+
+<SectionShell id="projects" label="Projects" heading="Selected Project Previews">
+  <div class="section-copy">
+    <p>
+      The selected project order is Venora, FAHAD, and ResumeBridge. Each preview uses verified
+      facts only; unavailable repositories, demos, screenshots, and case studies remain marked as
+      unavailable rather than rendered as broken links.
+    </p>
+  </div>
+  <div class="project-preview-list">
+    {featuredProjects.map((project, index) => <ProjectPreview project={project} index={index} />)}
+  </div>
+</SectionShell>
