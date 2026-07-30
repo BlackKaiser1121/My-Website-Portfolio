@@ -9,6 +9,13 @@ import { navigationItems } from "../../src/data/navigation";
 import { developmentPrinciples } from "../../src/data/principles";
 import { profile } from "../../src/data/profile";
 import {
+  caseStudySlugs,
+  getCaseStudyBySlug,
+  getCaseStudyNavigation,
+  getPublishedCaseStudies,
+  validateCaseStudyContent
+} from "../../src/data/case-studies";
+import {
   getFeaturedProjects,
   portfolioProjects,
   validatePortfolioContent
@@ -66,6 +73,8 @@ describe("portfolio content data", () => {
     const repositories = portfolioProjects.flatMap((project) =>
       project.repositoryUrl ? [project.repositoryUrl] : []
     );
+    const fahad = portfolioProjects.find((project) => project.slug === "fahad");
+    const resumeBridge = portfolioProjects.find((project) => project.slug === "resumebridge");
 
     expect(repositories).toContain("https://github.com/Jassim3nidad/venora");
     expect(repositories).toContain("https://github.com/BlackKaiser1121/FAHAD");
@@ -74,9 +83,10 @@ describe("portfolio content data", () => {
     expect(portfolioProjects.find((project) => project.slug === "venora")?.liveUrl).toBe(
       "https://venora-web.vercel.app/"
     );
-    expect(
-      portfolioProjects.find((project) => project.slug === "resumebridge")?.liveUrl
-    ).toBeUndefined();
+    expect(fahad?.liveUrl).toBeUndefined();
+    expect(fahad?.missingContent).not.toContain("live-url");
+    expect(resumeBridge?.liveUrl).toBeUndefined();
+    expect(resumeBridge?.missingContent).toEqual(["live-url", "system-fixes"]);
   });
 
   it("tracks missing assets and facts instead of inventing them", () => {
@@ -113,10 +123,36 @@ describe("portfolio content data", () => {
 
   it("connects the supplied Venora screenshot to its project content", () => {
     const venora = portfolioProjects.find((project) => project.slug === "venora");
-    const screenshotPath = new URL(
-      "../../public/assets/projects/venora-venue-listing.png",
-      import.meta.url
-    );
+    const expectedScreenshots = [
+      {
+        kind: "asset" as const,
+        src: "assets/projects/venora-venue-listing.png",
+        alt: "Venora mobile venue listing screen showing Amorita Resort details",
+        width: 910,
+        height: 1607
+      },
+      {
+        kind: "asset" as const,
+        src: "assets/projects/venora-home-search.png",
+        alt: "Venora mobile homepage search screen with event category chips and venue search form",
+        width: 902,
+        height: 1577
+      },
+      {
+        kind: "asset" as const,
+        src: "assets/projects/venora-about-overview.png",
+        alt: "Venora mobile about screen explaining the event marketplace",
+        width: 902,
+        height: 1592
+      },
+      {
+        kind: "asset" as const,
+        src: "assets/projects/venora-supplier-listing.png",
+        alt: "Venora mobile supplier listing screen showing Sai's Photography supplier details",
+        width: 902,
+        height: 1510
+      }
+    ];
 
     expect(venora?.thumbnail).toEqual({
       kind: "asset",
@@ -125,9 +161,14 @@ describe("portfolio content data", () => {
       width: 910,
       height: 1607
     });
-    expect(venora?.screenshots).toEqual([venora?.thumbnail]);
+    expect(venora?.screenshots).toEqual(expectedScreenshots);
     expect(venora?.missingContent).not.toContain("project-screenshots");
-    expect(existsSync(screenshotPath)).toBe(true);
+
+    for (const screenshot of expectedScreenshots) {
+      const screenshotPath = new URL(`../../public/${screenshot.src}`, import.meta.url);
+
+      expect(existsSync(screenshotPath)).toBe(true);
+    }
   });
 
   it("connects the supplied ResumeBridge screenshot to its project content", () => {
@@ -211,5 +252,89 @@ describe("portfolio content data", () => {
       "lenis",
       "three"
     ]);
+  });
+
+  it("publishes reusable case studies for the approved project routes only", () => {
+    expect(caseStudySlugs).toEqual(["venora", "fahad", "resumebridge"]);
+    expect(getPublishedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual(caseStudySlugs);
+    expect(getCaseStudyBySlug("nightbank-finance")).toBeUndefined();
+  });
+
+  it("validates case-study content contracts and unique section IDs", () => {
+    const validation = validateCaseStudyContent();
+
+    expect(validation.errors).toEqual([]);
+    expect(validation.warnings).toEqual([]);
+
+    for (const caseStudy of getPublishedCaseStudies()) {
+      const sectionIds = [
+        caseStudy.overview.id,
+        caseStudy.problem?.id,
+        caseStudy.users?.id,
+        caseStudy.goals?.id,
+        caseStudy.constraints?.id,
+        caseStudy.responsibilities?.id,
+        caseStudy.security?.id,
+        caseStudy.dataPrivacy?.id,
+        caseStudy.ux?.id,
+        caseStudy.qa?.id,
+        caseStudy.results?.id,
+        caseStudy.performance?.id,
+        caseStudy.lessons?.id,
+        caseStudy.futureWork?.id,
+        ...caseStudy.features.map((section) => section.id),
+        ...caseStudy.challenges.map((section) => section.id),
+        ...caseStudy.solutions.map((section) => section.id),
+        ...caseStudy.tradeOffs.map((section) => section.id)
+      ].filter((sectionId): sectionId is string => Boolean(sectionId));
+
+      expect(new Set(sectionIds).size).toBe(sectionIds.length);
+      expect(caseStudy.title).not.toBe("");
+      expect(caseStudy.summary).not.toBe("");
+      expect(caseStudy.role.length).toBeGreaterThan(0);
+      expect(caseStudy.technologies.length).toBeGreaterThan(0);
+      expect(caseStudy.screenshots.length).toBeGreaterThan(0);
+      expect(caseStudy.seo.title).toContain(caseStudy.title);
+      expect(caseStudy.seo.description).not.toBe(portfolioProjects[0]?.description);
+    }
+  });
+
+  it("generates previous and next project navigation from published ordering", () => {
+    expect(getCaseStudyNavigation("venora")).toEqual({
+      previous: undefined,
+      next: expect.objectContaining({ slug: "fahad", title: "FAHAD" })
+    });
+    expect(getCaseStudyNavigation("fahad")).toEqual({
+      previous: expect.objectContaining({ slug: "venora", title: "Venora" }),
+      next: expect.objectContaining({ slug: "resumebridge", title: "ResumeBridge" })
+    });
+    expect(getCaseStudyNavigation("resumebridge")).toEqual({
+      previous: expect.objectContaining({ slug: "fahad", title: "FAHAD" }),
+      next: undefined
+    });
+  });
+
+  it("distinguishes targets, verified results, and missing outcomes in case studies", () => {
+    const fahad = getCaseStudyBySlug("fahad");
+    const resumeBridge = getCaseStudyBySlug("resumebridge");
+    const venora = getCaseStudyBySlug("venora");
+
+    expect(fahad?.performance?.title).toBe("Performance and model evidence");
+    expect(fahad?.performance?.bullets).toContain(
+      "No measured accuracy, benchmark, or production performance result is verified in the portfolio sources."
+    );
+    expect(resumeBridge?.liveUrl).toBeUndefined();
+    expect(resumeBridge?.results?.bullets).toContain(
+      "No live deployment link, scoring accuracy, employer usage, or adoption metric is verified."
+    );
+    expect(resumeBridge?.futureWork?.bullets).toContain(
+      "Fix the known system issues before presenting ResumeBridge as a stable public deployment."
+    );
+    expect(fahad?.results?.bullets).toContain(
+      "No web deployment link is expected because FAHAD is an Android application."
+    );
+    expect(venora?.results?.bullets).toContain(
+      "A public deployment link is verified, but no user, revenue, traffic, or conversion results are verified."
+    );
   });
 });

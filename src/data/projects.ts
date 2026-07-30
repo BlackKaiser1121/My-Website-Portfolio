@@ -47,18 +47,39 @@ export const portfolioProjects: readonly PortfolioProject[] = [
         alt: "Venora mobile venue listing screen showing Amorita Resort details",
         width: 910,
         height: 1607
+      },
+      {
+        kind: "asset",
+        src: "assets/projects/venora-home-search.png",
+        alt: "Venora mobile homepage search screen with event category chips and venue search form",
+        width: 902,
+        height: 1577
+      },
+      {
+        kind: "asset",
+        src: "assets/projects/venora-about-overview.png",
+        alt: "Venora mobile about screen explaining the event marketplace",
+        width: 902,
+        height: 1592
+      },
+      {
+        kind: "asset",
+        src: "assets/projects/venora-supplier-listing.png",
+        alt: "Venora mobile supplier listing screen showing Sai's Photography supplier details",
+        width: 902,
+        height: 1510
       }
     ],
     repositoryUrl: "https://github.com/Jassim3nidad/venora",
     liveUrl: "https://venora-web.vercel.app/",
-    caseStudyAvailable: false,
+    caseStudyAvailable: true,
     caseStudySections: [
-      { title: "Platform overview", status: "planned" },
-      { title: "Authentication and role-based access control", status: "planned" },
-      { title: "QA and UI/UX decisions", status: "planned" }
+      { title: "Platform overview", status: "available" },
+      { title: "Authentication and role-based access control", status: "available" },
+      { title: "QA and UI/UX decisions", status: "available" }
     ],
     accessibilityLabel: "Venora project preview",
-    missingContent: ["case-study"]
+    missingContent: []
   },
   {
     id: "project-fahad",
@@ -99,14 +120,14 @@ export const portfolioProjects: readonly PortfolioProject[] = [
       }
     ],
     repositoryUrl: "https://github.com/BlackKaiser1121/FAHAD",
-    caseStudyAvailable: false,
+    caseStudyAvailable: true,
     caseStudySections: [
-      { title: "Offline verification workflow", status: "planned" },
-      { title: "On-device model integration", status: "planned" },
-      { title: "Privacy and local history", status: "planned" }
+      { title: "Offline verification workflow", status: "available" },
+      { title: "On-device model integration", status: "available" },
+      { title: "Privacy and local history", status: "available" }
     ],
     accessibilityLabel: "FAHAD project preview",
-    missingContent: ["live-url", "case-study"]
+    missingContent: []
   },
   {
     id: "project-resumebridge",
@@ -157,14 +178,14 @@ export const portfolioProjects: readonly PortfolioProject[] = [
       }
     ],
     repositoryUrl: "https://github.com/BlackKaiser1121/ResumeBridge",
-    caseStudyAvailable: false,
+    caseStudyAvailable: true,
     caseStudySections: [
-      { title: "Resume analysis workflow", status: "planned" },
-      { title: "Authentication and session isolation", status: "planned" },
-      { title: "AI API integration", status: "planned" }
+      { title: "Resume analysis workflow", status: "available" },
+      { title: "Authentication and session isolation", status: "available" },
+      { title: "AI API integration", status: "available" }
     ],
     accessibilityLabel: "ResumeBridge project preview",
-    missingContent: ["live-url", "case-study"]
+    missingContent: ["live-url", "system-fixes"]
   },
   {
     id: "project-nightbank-finance",

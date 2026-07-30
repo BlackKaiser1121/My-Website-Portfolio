@@ -102,3 +102,31 @@ Date: 2026-07-28
 - Missing content remains documented: project screenshots, case-study pages, verified paid/volunteer experience, favicon, and social preview images.
 - July 29 content-link follow-up added the user-supplied GitHub profile, LinkedIn profile, Venora repository, Venora live-demo link, ResumeBridge repository confirmation, FAHAD repository confirmation, supplied resume DOCX asset, updated resume email, Cavite location, BSCS institution/timeline, and StartupLab QA/UI/UX internship entry.
 - No GSAP, `@gsap/react`, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or particle libraries were installed.
+
+## Phase 4 Case-Study System Follow-Up
+
+- Preflight branch: `redesign/portfolio-v2`.
+- Preflight working tree: clean.
+- Preflight commands passed before edits: `pnpm lint`, `pnpm type-check`, `pnpm test`, `pnpm build`, and `pnpm test:e2e`.
+- Added `docs/portfolio-v2/case-study-content-audit.md` to classify verified, partial, missing, target, measured-result, outdated, and publication-excluded content for Venora, FAHAD, and ResumeBridge.
+- Added reusable case-study interfaces in `src/types/portfolio.ts`.
+- Added structured case-study content in `src/data/case-studies.ts` for Venora, FAHAD, and ResumeBridge.
+- Added static Astro route generation through `src/pages/projects/[slug].astro`.
+- Added reusable case-study rendering components in `src/components/projects/CaseStudyLayout.astro`, `CaseStudySection.astro`, `ProjectArchitectureDiagram.astro`, and `ProjectGallery.astro`.
+- Updated `BaseLayout` with canonical URLs, Open Graph metadata, Twitter card metadata, and optional JSON-LD.
+- Added `public/favicon.svg` and linked it through `BaseLayout` under the GitHub Pages base path.
+- Updated homepage project previews so Venora, FAHAD, and ResumeBridge link to real case-study routes.
+- Kept FAHAD and ResumeBridge live-demo links omitted because no deployments are verified.
+- Added route, metadata, 404, homepage-link, previous/next navigation, accessibility, and responsive browser tests in `tests/e2e/case-studies.spec.ts`.
+- Expanded unit content tests for unique published slugs, case-study content validation, generated previous/next navigation, and separation of targets from measured results.
+- TDD red state was confirmed with `pnpm test` failing on the missing `src/data/case-studies` module before implementation.
+- Case-study browser red state was confirmed before implementation; after implementation, `pnpm test:e2e -- tests/e2e/case-studies.spec.ts` passed with 14 tests.
+- No GSAP, `@gsap/react`, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or particle libraries were installed.
+
+## Phase 4 Content Evidence Follow-Up
+
+- Added three additional user-supplied Venora screenshots for the mobile landing search, about overview, and supplier listing surfaces.
+- Venora now has four verified mobile screenshots in `public/assets/projects/` and the case-study gallery.
+- Corrected FAHAD deployment status: no web deployment link is expected because it is an Android application.
+- Corrected ResumeBridge status: no deployment link is verified, and the system has known fixes pending before it should be presented as stable.
+- Confirmed the content-data red state before implementation with `pnpm test`, then restored the unit suite to green after updating the content.

@@ -1,0 +1,38 @@
+---
+import type { CaseStudyImage } from "../../types/portfolio";
+
+interface Props {
+  images: readonly CaseStudyImage[];
+  projectTitle: string;
+}
+
+const { images, projectTitle } = Astro.props;
+const withBasePath = (src: string): string =>
+  `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}${src.replace(/^\//, "")}`;
+---
+
+{
+  images.length > 0 && (
+    <section id="screenshots" class="project-gallery" aria-labelledby="screenshots-title">
+      <div class="case-study-section__header">
+        <p class="metadata-label">Visual Evidence</p>
+        <h2 id="screenshots-title">Project Screenshots</h2>
+      </div>
+      <div class="project-gallery__grid">
+        {images.map((image, index) => (
+          <figure aria-label={`${projectTitle} visual ${index + 1}`}>
+            <img
+              src={withBasePath(image.src)}
+              alt={`${projectTitle} gallery image: ${image.caption}`}
+              width={image.width}
+              height={image.height}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}

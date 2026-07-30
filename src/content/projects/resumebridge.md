@@ -42,16 +42,16 @@ screenshots:
     width: 1896
     height: 927
 repositoryUrl: "https://github.com/BlackKaiser1121/ResumeBridge"
-caseStudyAvailable: false
+caseStudyAvailable: true
 caseStudySections:
   - title: "Resume analysis workflow"
-    status: "planned"
+    status: "available"
   - title: "Authentication and session isolation"
-    status: "planned"
+    status: "available"
   - title: "AI API integration"
-    status: "planned"
+    status: "available"
 accessibilityLabel: "ResumeBridge project preview"
 missingContent:
   - "live-url"
-  - "case-study"
+  - "system-fixes"
 ---

@@ -39,16 +39,14 @@ screenshots:
     width: 720
     height: 1544
 repositoryUrl: "https://github.com/BlackKaiser1121/FAHAD"
-caseStudyAvailable: false
+caseStudyAvailable: true
 caseStudySections:
   - title: "Offline verification workflow"
-    status: "planned"
+    status: "available"
   - title: "On-device model integration"
-    status: "planned"
+    status: "available"
   - title: "Privacy and local history"
-    status: "planned"
+    status: "available"
 accessibilityLabel: "FAHAD project preview"
-missingContent:
-  - "live-url"
-  - "case-study"
+missingContent: []
 ---

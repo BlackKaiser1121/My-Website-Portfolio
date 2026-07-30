@@ -232,6 +232,18 @@ test.describe("Portfolio V2 foundation shell", () => {
       "href",
       "https://github.com/BlackKaiser1121/ResumeBridge"
     );
+    await expect(page.getByRole("link", { name: "Open Venora case study" })).toHaveAttribute(
+      "href",
+      "./projects/venora/"
+    );
+    await expect(page.getByRole("link", { name: "Open FAHAD case study" })).toHaveAttribute(
+      "href",
+      "./projects/fahad/"
+    );
+    await expect(page.getByRole("link", { name: "Open ResumeBridge case study" })).toHaveAttribute(
+      "href",
+      "./projects/resumebridge/"
+    );
     const loadedProjectImages = await page
       .locator(".project-preview__visual--asset img")
       .evaluateAll((images) =>
@@ -284,7 +296,7 @@ test.describe("Portfolio V2 foundation shell", () => {
 
     expect(assetImagesCoverFrameCenters).toEqual([true, true, true]);
     await expect(page.getByRole("link", { name: "Open ResumeBridge live demo" })).toHaveCount(0);
-    await expect(page.getByText("Case study not available yet")).toHaveCount(3);
+    await expect(page.getByText("Case study not available yet")).toHaveCount(0);
   });
 
   test("renders the static planet as decorative fallback content", async ({ page }) => {
@@ -338,6 +350,15 @@ test.describe("Portfolio V2 foundation shell", () => {
     const results = await new AxeBuilder({ page }).analyze();
 
     expect(results.violations).toEqual([]);
+  });
+
+  test("references a favicon asset under the GitHub Pages base path", async ({ page }) => {
+    await page.goto("./");
+
+    await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
+      "href",
+      "/My-Website-Portfolio/favicon.svg"
+    );
   });
 
   for (const viewport of viewports) {

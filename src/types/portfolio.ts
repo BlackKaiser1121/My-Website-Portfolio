@@ -48,7 +48,7 @@ export type ProjectVisual = VisualPlaceholder | ImageAsset;
 
 export type ProjectStatus = "active" | "deployed" | "in-progress" | "draft";
 
-export interface CaseStudySection {
+export interface ProjectCaseStudyAvailability {
   title: string;
   status: "available" | "planned" | "missing";
 }
@@ -73,9 +73,98 @@ export interface PortfolioProject {
   repositoryUrl?: string;
   liveUrl?: string;
   caseStudyAvailable: boolean;
-  caseStudySections: readonly CaseStudySection[];
+  caseStudySections: readonly ProjectCaseStudyAvailability[];
   accessibilityLabel: string;
   missingContent: readonly string[];
+}
+
+export interface CaseStudySection {
+  id: string;
+  title: string;
+  eyebrow?: string;
+  paragraphs?: readonly string[];
+  bullets?: readonly string[];
+}
+
+export interface ArchitectureConnection {
+  from: string;
+  to: string;
+  label?: string;
+}
+
+export interface CaseStudyArchitectureNode {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export interface CaseStudyArchitecture {
+  title: string;
+  summary: string;
+  nodes: readonly CaseStudyArchitectureNode[];
+  connections: readonly ArchitectureConnection[];
+  textAlternative: string;
+}
+
+export interface CaseStudyImage extends ImageAsset {
+  caption: string;
+}
+
+export interface CaseStudySeo {
+  title: string;
+  description: string;
+  canonicalPath: `/projects/${string}/`;
+  ogImage?: CaseStudyImage;
+}
+
+export interface CaseStudyNavigationItem {
+  slug: string;
+  title: string;
+  href: `../${string}/`;
+}
+
+export interface CaseStudyNavigation {
+  previous?: CaseStudyNavigationItem | undefined;
+  next?: CaseStudyNavigationItem | undefined;
+}
+
+export interface ProjectCaseStudy {
+  slug: string;
+  title: string;
+  shortTitle: string;
+  identifier: string;
+  summary: string;
+  status: ProjectStatus;
+  statusLabel: string;
+  dateRange: string;
+  category: string;
+  role: readonly string[];
+  technologies: readonly string[];
+  overview: CaseStudySection;
+  problem?: CaseStudySection;
+  users?: CaseStudySection;
+  goals?: CaseStudySection;
+  constraints?: CaseStudySection;
+  responsibilities?: CaseStudySection;
+  architecture?: CaseStudyArchitecture;
+  features: readonly CaseStudySection[];
+  security?: CaseStudySection;
+  dataPrivacy?: CaseStudySection;
+  ux?: CaseStudySection;
+  qa?: CaseStudySection;
+  challenges: readonly CaseStudySection[];
+  solutions: readonly CaseStudySection[];
+  tradeOffs: readonly CaseStudySection[];
+  results?: CaseStudySection;
+  performance?: CaseStudySection;
+  lessons?: CaseStudySection;
+  futureWork?: CaseStudySection;
+  screenshots: readonly CaseStudyImage[];
+  repositoryUrl?: string;
+  liveUrl?: string;
+  seo: CaseStudySeo;
+  published: boolean;
+  order: number;
 }
 
 export interface CapabilityItem {

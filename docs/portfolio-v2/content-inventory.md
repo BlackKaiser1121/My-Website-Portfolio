@@ -46,14 +46,14 @@ Scope: Portfolio V2 static homepage structure and typed content phase.
 | Venora QA and UI/UX involvement | Approved phase brief | Verified and reusable | Use as role/responsibility evidence. |
 | Venora repository URL | User supplied, public GitHub page checked | Verified and reusable | `https://github.com/Jassim3nidad/venora`. |
 | Venora live demo URL | User supplied, public GitHub page checked | Verified and reusable | `https://venora-web.vercel.app/`. |
-| Venora screenshot | User supplied, copied to `public/assets/projects/venora-venue-listing.png` | Verified and reusable | Mobile venue listing screen showing Amorita Resort. |
+| Venora screenshots | User supplied, copied to `public/assets/projects/` | Verified and reusable | Four mobile screens: landing search, about overview, venue listing, and supplier listing. |
 | FAHAD title and repository | `index.html`, `src/data/projects.ts`, `src/content/projects/fahad.md` | Verified and reusable | Repository: `https://github.com/BlackKaiser1121/FAHAD`. |
 | FAHAD offline deepfake image verification | Repository content and approved phase brief | Verified and reusable | Use as homepage summary. |
 | FAHAD Flutter, Dart, TensorFlow Lite, Vision Transformer, SQLite, Python | Repository content, approved phase brief, updated resume | Verified and reusable | Existing repo says `Tflite`; normalize display to TensorFlow Lite. |
 | FAHAD on-device inference and privacy-first architecture | Approved phase brief | Verified and reusable | Do not add benchmark or accuracy claims. |
 | FAHAD local encrypted history | Approved phase brief | Verified and reusable | Use as a feature/security consideration. |
 | FAHAD real, uncertain, or manipulated classification | Approved phase brief | Verified and reusable | Use as output-state description only. |
-| FAHAD live demo | Not found | Missing | Do not render live-demo anchor. |
+| FAHAD web deployment | User supplied | Not applicable | No web deployment link is expected because FAHAD is an Android application; do not render a live-demo anchor. |
 | FAHAD screenshot | User supplied, copied to `public/assets/projects/fahad-verification-result.png` | Verified and reusable | Mobile verification result screen showing score and classification state. |
 | ResumeBridge title and repository | `index.html`, `src/data/projects.ts`, `src/content/projects/resumebridge.md` | Verified and reusable | Repository: `https://github.com/BlackKaiser1121/ResumeBridge`. |
 | ResumeBridge AI resume analysis and job-description comparison | Repository content and approved phase brief | Verified and reusable | Use without accuracy or adoption claims. |
@@ -61,9 +61,13 @@ Scope: Portfolio V2 static homepage structure and typed content phase.
 | ResumeBridge Qwen3.6-Plus API integration through cURL | Updated resume | Verified and reusable | Use as integration fact. |
 | ResumeBridge authentication, session isolation, compatibility scoring, skill-gap and keyword feedback | Approved phase brief | Verified and reusable | Use as system/responsibility facts. |
 | ResumeBridge live demo | Not found | Missing | Do not render live-demo anchor. |
+| ResumeBridge current system fixes | User supplied | Verified and reusable | The system has several issues to fix before it should be presented as stable. |
 | ResumeBridge screenshot | User supplied, copied to `public/assets/projects/resumebridge-ai-job-finder.png` | Verified and reusable | AI Job Finder analyzer screen with ranked recommendations. |
 | Nightbank Finance | `index.html`, `src/data/projects.ts`, `src/content/projects/nightbank-finance.md` | Verified but should be rewritten later | Preserve as archive/secondary content; not a priority project for this phase. |
-| Project case-study pages | Not implemented | Missing | Deferred by this phase request. Case-study actions should state not available yet. |
+| Venora case-study page | `src/data/case-studies.ts`, `src/pages/projects/[slug].astro` | Verified and reusable | Route: `/projects/venora/`. |
+| FAHAD case-study page | `src/data/case-studies.ts`, `src/pages/projects/[slug].astro` | Verified and reusable | Route: `/projects/fahad/`. |
+| ResumeBridge case-study page | `src/data/case-studies.ts`, `src/pages/projects/[slug].astro` | Verified and reusable | Route: `/projects/resumebridge/`. |
+| Reusable case-study model | `src/types/portfolio.ts`, `src/data/case-studies.ts` | Verified and reusable | Structured sections, architecture nodes/connections, screenshots, links, navigation, and SEO metadata. |
 
 ## Capabilities
 
@@ -95,9 +99,10 @@ Scope: Portfolio V2 static homepage structure and typed content phase.
 | Item | Source | Classification | Notes |
 | --- | --- | --- | --- |
 | Font strategy README | `public/assets/fonts/README.md` | Verified and reusable | No font binaries are present. |
-| Featured project screenshots | `public/assets/projects/` | Verified and reusable | Venora, FAHAD, and ResumeBridge now use supplied screenshots. Nightbank still uses a placeholder. |
+| Featured project screenshots | `public/assets/projects/` | Verified and reusable | Venora now has four supplied screenshots; FAHAD and ResumeBridge each use one supplied screenshot. Nightbank still uses a placeholder. |
 | Resume asset | `public/assets/resume/jared-fahad-baquirin-resume.docx` | Verified and reusable | User supplied updated DOCX. |
-| Favicon / social image | Not found | Missing | Later SEO phase. |
+| Favicon | `public/favicon.svg` | Verified and reusable | Linked from `BaseLayout` under the GitHub Pages base path. |
+| Case-study Open Graph images | Supplied project screenshots | Verified and reusable | Project pages use valid screenshot assets for OG image metadata. |
 | Static celestial visual | This phase | Missing before implementation | Should be CSS/SVG decorative markup with no WebGL or animation. |
 
 ## Items To Remove Or Avoid
@@ -112,9 +117,8 @@ Scope: Portfolio V2 static homepage structure and typed content phase.
 
 ## Current Content Gaps For Later Phases
 
-- Venora deeper case-study evidence.
-- FAHAD live demo status, measured performance or accuracy evidence if it exists.
-- ResumeBridge live demo status and deeper case-study evidence.
+- More Venora dashboard, booking-flow, and authenticated role-specific screenshots if available.
+- FAHAD measured performance or accuracy evidence if it exists.
+- ResumeBridge stable deployment status, known system fixes, and deeper measured evidence.
 - Awards or certificates if Jared wants them public.
-- Dedicated case-study pages.
-- Production-ready social preview images and favicon.
+- Dedicated branded social preview variants beyond the existing screenshot-based metadata.

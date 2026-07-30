@@ -41,17 +41,34 @@ screenshots:
     alt: "Venora mobile venue listing screen showing Amorita Resort details"
     width: 910
     height: 1607
+  - kind: "asset"
+    label: "Venora homepage search screenshot"
+    src: "assets/projects/venora-home-search.png"
+    alt: "Venora mobile homepage search screen with event category chips and venue search form"
+    width: 902
+    height: 1577
+  - kind: "asset"
+    label: "Venora about overview screenshot"
+    src: "assets/projects/venora-about-overview.png"
+    alt: "Venora mobile about screen explaining the event marketplace"
+    width: 902
+    height: 1592
+  - kind: "asset"
+    label: "Venora supplier listing screenshot"
+    src: "assets/projects/venora-supplier-listing.png"
+    alt: "Venora mobile supplier listing screen showing Sai's Photography supplier details"
+    width: 902
+    height: 1510
 repositoryUrl: "https://github.com/Jassim3nidad/venora"
 liveUrl: "https://venora-web.vercel.app/"
-caseStudyAvailable: false
+caseStudyAvailable: true
 caseStudySections:
   - title: "Platform overview"
-    status: "planned"
+    status: "available"
   - title: "Authentication and role-based access control"
-    status: "planned"
+    status: "available"
   - title: "QA and UI/UX decisions"
-    status: "planned"
+    status: "available"
 accessibilityLabel: "Venora project preview"
-missingContent:
-  - "case-study"
+missingContent: []
 ---

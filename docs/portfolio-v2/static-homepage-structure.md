@@ -18,10 +18,11 @@ This phase implements the static homepage content hierarchy for KAISER SYSTEM - 
 - Education entries: `src/data/education.ts`
 - Development principles: `src/data/principles.ts`
 - Architecture preview data: `src/data/architecture.ts`
+- Case-study content: `src/data/case-studies.ts`
 - Astro project collection schema: `src/content/config.ts`
 - Project collection stubs: `src/content/projects/*.md`
 
-The homepage currently reads from `src/data/*`. The Markdown collection mirrors verified project facts for future case-study work, but no project route is created in this phase.
+The homepage currently reads from `src/data/*`. The Markdown collection mirrors verified project facts, and the dedicated case-study route now reads structured case-study content from `src/data/case-studies.ts`.
 
 ## Content Editing Process
 
@@ -40,6 +41,11 @@ The homepage currently reads from `src/data/*`. The Markdown collection mirrors 
 - Profile section: `src/components/sections/ProfileSection.astro`
 - Selected projects section: `src/components/sections/SelectedProjectsSection.astro`
 - Project preview component: `src/components/projects/ProjectPreview.astro`
+- Case-study route: `src/pages/projects/[slug].astro`
+- Case-study layout: `src/components/projects/CaseStudyLayout.astro`
+- Case-study section renderer: `src/components/projects/CaseStudySection.astro`
+- Case-study architecture diagram: `src/components/projects/ProjectArchitectureDiagram.astro`
+- Case-study screenshot gallery: `src/components/projects/ProjectGallery.astro`
 - Architecture preview section: `src/components/sections/ArchitecturePreviewSection.astro`
 - Architecture diagram: `src/components/architecture/ArchitectureDiagram.astro`
 - Capabilities section: `src/components/sections/CapabilitiesSection.astro`
@@ -76,9 +82,9 @@ No project metrics, user counts, revenue, performance benchmarks, production sca
 ## Missing Or Unverified Content
 
 - Nightbank project screenshot.
-- All project case-study pages and deeper case-study evidence.
+- Additional screenshots and deeper measured case-study evidence.
 - Paid employment or volunteer details.
-- Favicon and social preview images.
+- Dedicated branded social preview variants beyond the existing screenshot-based metadata.
 
 ## Asset Validation
 
@@ -91,9 +97,17 @@ Assets requiring later replacement or recapture:
 - PDF resume variant if Jared wants a browser-native resume format later.
 - Favicon and social preview image.
 
+## Implemented After This Phase
+
+- Dedicated case-study routes for Venora, FAHAD, and ResumeBridge.
+- Reusable structured case-study model.
+- Accessible case-study architecture diagrams with text alternatives.
+- Reusable screenshot gallery.
+- Project-specific metadata using the supplied screenshots.
+- Homepage case-study links for the three published case studies.
+
 ## Deferred Work
 
-- Dedicated project case-study pages.
 - GSAP or any section-reveal motion.
 - Enhanced celestial planet, pointer behavior, canvas, WebGL, Three.js, React Three Fiber, or Drei.
 - Page transitions or initialization sequence.

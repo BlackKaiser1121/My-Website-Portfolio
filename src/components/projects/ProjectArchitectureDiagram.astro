@@ -1,0 +1,66 @@
+---
+import type { CaseStudyArchitecture } from "../../types/portfolio";
+
+interface Props {
+  architecture: CaseStudyArchitecture;
+  slug: string;
+}
+
+const { architecture, slug } = Astro.props;
+const titleId = `${slug}-architecture-title`;
+const textId = `${slug}-architecture-text`;
+---
+
+<figure
+  id="architecture"
+  class="case-architecture"
+  role="figure"
+  aria-labelledby={titleId}
+  aria-describedby={textId}
+>
+  <figcaption class="case-architecture__caption">
+    <h2 id={titleId}>{architecture.title}</h2>
+    <p>{architecture.summary}</p>
+  </figcaption>
+
+  <div class="case-architecture__body">
+    <ol class="case-architecture__nodes" aria-label={`${architecture.title} nodes`}>
+      {
+        architecture.nodes.map((node, index) => (
+          <li>
+            <span class="case-architecture__index">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{node.label}</h3>
+              {node.description && <p>{node.description}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="case-architecture__relationships">
+      <h3>Verified Relationships</h3>
+      <ul>
+        {
+          architecture.connections.map((connection) => {
+            const fromNode = architecture.nodes.find((node) => node.id === connection.from);
+            const toNode = architecture.nodes.find((node) => node.id === connection.to);
+
+            return (
+              <li>
+                <span>{fromNode?.label ?? connection.from}</span>
+                <span aria-hidden="true">-&gt;</span>
+                <span>{toNode?.label ?? connection.to}</span>
+                {connection.label && <em>{connection.label}</em>}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+
+  <p id={textId} data-testid={textId} class="case-architecture__text">
+    {architecture.textAlternative}
+  </p>
+</figure>

@@ -72,7 +72,13 @@ const projectNumber = String(index + 1).padStart(2, "0");
           <span>Repository link not verified</span>
         )
       }
-      {project.liveUrl && <a href={project.liveUrl}>Open {project.shortTitle} live demo</a>}
+      {
+        project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            Open {project.shortTitle} live demo
+          </a>
+        )
+      }
       {
         project.caseStudyAvailable ? (
           <a href={`./projects/${project.slug}/`}>Open {project.shortTitle} case study</a>

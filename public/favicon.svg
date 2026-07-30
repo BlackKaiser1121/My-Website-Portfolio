@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jared Baquirin portfolio mark">
+  <rect width="64" height="64" rx="8" fill="#050706"/>
+  <path d="M16 16h32v32H16z" fill="#101413" stroke="#74f28f" stroke-width="2"/>
+  <path d="M22 42V22h5v8l8-8h7L31 32l12 10h-7l-9-8v8z" fill="#f2f5ef"/>
+  <path d="M14 32h36M32 14v36" stroke="#74f28f" stroke-width="1" opacity=".36"/>
+</svg>

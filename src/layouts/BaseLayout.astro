@@ -5,12 +5,30 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  ogImage?: string | undefined;
+  ogType?: "website" | "article";
+  structuredData?: Record<string, unknown> | readonly Record<string, unknown>[] | undefined;
 }
 
 const {
   title = "Jared Baquirin Portfolio V2",
-  description = "Portfolio V2 foundation for Jared Baquirin's static-first Astro website."
+  description = "Portfolio V2 foundation for Jared Baquirin's static-first Astro website.",
+  canonicalPath = "/",
+  ogImage,
+  ogType = "website",
+  structuredData
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://blackkaiser1121.github.io");
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const normalizedCanonicalPath = canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`;
+const canonicalUrl = new URL(`${basePath}${normalizedCanonicalPath}`, siteUrl).toString();
+const faviconPath = `${basePath}/favicon.svg`;
+const ogImageUrl = ogImage
+  ? new URL(`${basePath}/${ogImage.replace(/^\//, "")}`, siteUrl).toString()
+  : undefined;
+const jsonLd = structuredData ? JSON.stringify(structuredData).replace(/</g, "\\u003c") : undefined;
 ---
 
 <!doctype html>
@@ -19,6 +37,18 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="icon" href={faviconPath} type="image/svg+xml" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta name="twitter:card" content={ogImageUrl ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
     <title>{title}</title>
   </head>
   <body>

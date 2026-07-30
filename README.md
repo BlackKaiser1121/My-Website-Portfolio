@@ -1,8 +1,8 @@
 # Jared Baquirin Portfolio V2
 
-Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro foundation. The active foundation toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
+Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro portfolio. The active toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
 
-The current phase implements the static homepage structure, typed portfolio content, selected project previews, and a CSS-only static celestial placeholder. It does not implement case-study pages, the enhanced holographic planet, GSAP, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or decorative animations.
+The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, and accessible screenshot handling. It does not implement the enhanced holographic planet, GSAP, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or decorative animations.
 
 ## Commands
 
@@ -46,6 +46,12 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - Static hero: `src/components/hero/HeroSection.astro`
 - Static planet placeholder: `src/components/hero/StaticPlanet.astro`
 - Project preview component: `src/components/projects/ProjectPreview.astro`
+- Case-study content: `src/data/case-studies.ts`
+- Case-study route: `src/pages/projects/[slug].astro`
+- Case-study layout: `src/components/projects/CaseStudyLayout.astro`
+- Case-study section renderer: `src/components/projects/CaseStudySection.astro`
+- Case-study architecture diagram: `src/components/projects/ProjectArchitectureDiagram.astro`
+- Case-study image gallery: `src/components/projects/ProjectGallery.astro`
 - Homepage sections: `src/components/sections/`
 
 The palette uses near-black, graphite, soft-white text, and electric green as a restrained accent for focus, active states, small labels, and thin interface details.
@@ -63,21 +69,23 @@ The local Playwright config uses installed Chrome on Windows when not running in
 - Existing `index.html` and `style.css` are preserved as the rollback path.
 - Current verified portfolio facts are separated into typed data modules under `src/data/`.
 - Shared content interfaces live in `src/types/portfolio.ts`.
-- Current project facts are mirrored in `src/content/projects/` to establish Astro content collections for later case-study routes.
+- Current project facts are mirrored in `src/content/projects/`.
 - The homepage route now renders the static content hierarchy: hero, profile, selected projects, architecture preview, capabilities, experience, education, development principles, and contact.
+- `/projects/venora/`, `/projects/fahad/`, and `/projects/resumebridge/` render dedicated static case-study pages.
 - The supplied resume DOCX is available at `public/assets/resume/jared-fahad-baquirin-resume.docx`.
 
 ## Content Editing
 
 - Update typed homepage content in `src/data/`.
+- Update case-study content in `src/data/case-studies.ts`.
 - Keep unavailable URLs as omitted optional properties, not empty strings.
 - Add project images only after files exist under `public/assets/projects/` with accurate alt text and dimensions.
-- Update `docs/portfolio-v2/content-inventory.md` when facts move from missing or unverified to verified.
+- Update `docs/portfolio-v2/content-inventory.md` and `docs/portfolio-v2/case-study-content-audit.md` when facts move from missing or unverified to verified.
 - Run `pnpm test` and `pnpm test:e2e` after content changes.
 
 ## Known Limitations
 
-- Dedicated project case-study pages have not started.
 - The enhanced holographic planet and animation system are intentionally absent.
-- Project screenshots, favicon, and social preview images are still missing from the repository.
-- ResumeBridge has no deployment link and is intentionally rendered without a live-demo anchor.
+- Additional measured project results are still missing.
+- FAHAD has no web deployment link because it is an Android application, so it is intentionally rendered without a live-demo anchor.
+- ResumeBridge has no deployment link and has known system fixes pending before it should be presented as a stable public deployment.

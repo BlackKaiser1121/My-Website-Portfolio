@@ -13,6 +13,7 @@ Read these files before planning or implementing Portfolio V2 work:
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\design-specification.md`
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\architecture-decision.md`
 - `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\implementation-plan.md`
+- `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\case-study-content-audit.md`
 
 ## Repository Commands
 
@@ -50,6 +51,10 @@ Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so 
 - Static hero and planet placeholder live in `C:\Users\ranib\My-Website-Portfolio\src\components\hero`.
 - Project previews live in `C:\Users\ranib\My-Website-Portfolio\src\components\projects\ProjectPreview.astro`.
 - Architecture preview UI lives in `C:\Users\ranib\My-Website-Portfolio\src\components\architecture\ArchitectureDiagram.astro`.
+- Reusable case-study content lives in `C:\Users\ranib\My-Website-Portfolio\src\data\case-studies.ts`.
+- Dedicated case-study routes live in `C:\Users\ranib\My-Website-Portfolio\src\pages\projects\[slug].astro`.
+- Case-study layout components live in `C:\Users\ranib\My-Website-Portfolio\src\components\projects`.
+- Case-study content audit lives in `C:\Users\ranib\My-Website-Portfolio\docs\portfolio-v2\case-study-content-audit.md`.
 
 ## Coding Rules
 
