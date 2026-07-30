@@ -2,7 +2,7 @@
 
 Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro portfolio. The active toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
 
-The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, and accessible screenshot handling. It does not implement the enhanced holographic planet, GSAP, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, or decorative animations.
+The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, accessible screenshot handling, and a controlled GSAP motion layer. It does not implement WebGL, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, smooth-scroll libraries, page transitions, or a 3D planet.
 
 ## Commands
 
@@ -31,6 +31,7 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - `vitest`: unit tests for typed content and architecture guards.
 - `@playwright/test`: browser validation across the GitHub Pages base path.
 - `@axe-core/playwright`: automated accessibility smoke testing.
+- `gsap`: controlled hero, section, project-preview, architecture, planet, and case-study motion.
 - `cross-env`: disables Astro telemetry consistently across Windows and CI scripts.
 - `pnpm-workspace.yaml`: approves `esbuild` build scripts required by Astro/Vite and denies optional `sharp` scripts for this foundation phase.
 
@@ -46,6 +47,13 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - Static hero: `src/components/hero/HeroSection.astro`
 - Static planet placeholder: `src/components/hero/StaticPlanet.astro`
 - Project preview component: `src/components/projects/ProjectPreview.astro`
+- Motion tokens: `src/styles/tokens.css`
+- Motion stylesheet: `src/styles/motion.css`
+- GSAP registration: `src/animation/gsap.ts`
+- Shared motion config: `src/animation/motion-config.ts`
+- Reduced-motion detection: `src/animation/reduced-motion.ts`
+- Reveal and planet helpers: `src/animation/reveal.ts`
+- Motion bootstrap: `src/scripts/motion.ts`
 - Case-study content: `src/data/case-studies.ts`
 - Case-study route: `src/pages/projects/[slug].astro`
 - Case-study layout: `src/components/projects/CaseStudyLayout.astro`
@@ -85,7 +93,8 @@ The local Playwright config uses installed Chrome on Windows when not running in
 
 ## Known Limitations
 
-- The enhanced holographic planet and animation system are intentionally absent.
+- The enhanced planet remains CSS/SVG only; WebGL and 3D planet work are intentionally absent.
+- Page transitions and initialization sequences are still deferred.
 - Additional measured project results are still missing.
 - FAHAD has no web deployment link because it is an Android application, so it is intentionally rendered without a live-demo anchor.
 - ResumeBridge has no deployment link and has known system fixes pending before it should be presented as a stable public deployment.

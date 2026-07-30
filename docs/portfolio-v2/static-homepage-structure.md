@@ -105,11 +105,10 @@ Assets requiring later replacement or recapture:
 - Reusable screenshot gallery.
 - Project-specific metadata using the supplied screenshots.
 - Homepage case-study links for the three published case studies.
+- Controlled GSAP motion layer, semantic motion tokens, CSS/SVG planet animation, reduced-motion handling, and restrained homepage/case-study reveals.
 
 ## Deferred Work
 
-- GSAP or any section-reveal motion.
-- Enhanced celestial planet, pointer behavior, canvas, WebGL, Three.js, React Three Fiber, or Drei.
+- WebGL, Three.js, React Three Fiber, Drei, canvas, or a true 3D planet.
 - Page transitions or initialization sequence.
 - Active-section scroll tracking.
-- SEO/social metadata beyond the current BaseLayout title and description.

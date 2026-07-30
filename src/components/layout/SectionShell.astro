@@ -15,8 +15,9 @@ const headingId = `${id}-title`;
   class:list={["section-shell", `section-shell--${variant}`]}
   aria-labelledby={headingId}
   tabindex="-1"
+  data-motion-section
 >
-  <div class="section-shell__header">
+  <div class="section-shell__header" data-motion-section-header>
     <p class="metadata-label">{label}</p>
     <h2 id={headingId}>{heading}</h2>
   </div>

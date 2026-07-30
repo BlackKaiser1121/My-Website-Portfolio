@@ -79,6 +79,19 @@ describe("design system tokens", () => {
     expect(readToken("--duration-fast")).toBe("120ms");
   });
 
+  it("defines semantic motion tokens for the controlled motion phase", () => {
+    expect(readToken("--motion-duration-instant")).toBe("0ms");
+    expect(readToken("--motion-duration-fast")).toBe("120ms");
+    expect(readToken("--motion-duration-standard")).toBe("180ms");
+    expect(readToken("--motion-duration-reveal")).toBe("420ms");
+    expect(readToken("--motion-duration-cinematic")).toBe("760ms");
+    expect(readToken("--motion-duration-ambient")).toBe("32000ms");
+    expect(readToken("--motion-duration-reduced")).toBe("0ms");
+    expect(readToken("--motion-ease-standard")).toBe("cubic-bezier(0.2, 0, 0, 1)");
+    expect(readToken("--motion-ease-emphasized")).toBe("cubic-bezier(0.16, 1, 0.3, 1)");
+    expect(readToken("--motion-ease-exit")).toBe("cubic-bezier(0.7, 0, 0.84, 0)");
+  });
+
   it("keeps text color contrast at WCAG AA levels on dark surfaces", () => {
     expect(
       contrastRatio(readToken("--color-text-primary"), readToken("--color-background"))

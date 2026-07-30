@@ -18,17 +18,18 @@ export const architectureSummary: ArchitectureSummary = {
   notes: [
     "Current static index.html and style.css stay in place until the Astro replacement builds.",
     "Astro is configured for static output and the /My-Website-Portfolio base path.",
-    "No animation, 3D, or scroll libraries are part of this foundation phase."
+    "GSAP is installed only for controlled motion; 3D, smooth-scroll, and extra animation libraries remain excluded."
   ]
 };
 
-export const bannedFoundationDependencies = [
+export const approvedMotionDependencies = ["gsap"] as const;
+
+export const prohibitedMotionDependencies = [
   "@gsap/react",
   "@react-three/drei",
   "@react-three/fiber",
   "animejs",
   "framer-motion",
-  "gsap",
   "lenis",
   "three"
 ] as const;

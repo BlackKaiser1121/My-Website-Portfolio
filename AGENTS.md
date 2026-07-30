@@ -41,6 +41,9 @@ Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so 
 
 - Design tokens live in `C:\Users\ranib\My-Website-Portfolio\src\styles\tokens.css`.
 - Global reset, typography, layout, navigation, footer, focus, and reduced-motion styles live in `C:\Users\ranib\My-Website-Portfolio\src\styles\global.css`.
+- Controlled motion styles live in `C:\Users\ranib\My-Website-Portfolio\src\styles\motion.css`.
+- GSAP registration and shared motion helpers live in `C:\Users\ranib\My-Website-Portfolio\src\animation`.
+- Portfolio motion bootstrapping lives in `C:\Users\ranib\My-Website-Portfolio\src\scripts\motion.ts`.
 - Page shell primitives live in `C:\Users\ranib\My-Website-Portfolio\src\components\layout`.
 - Primary navigation lives in `C:\Users\ranib\My-Website-Portfolio\src\components\navigation\SiteNav.astro`.
 - Mobile navigation enhancement lives in `C:\Users\ranib\My-Website-Portfolio\src\scripts\navigation.ts`.
@@ -69,6 +72,7 @@ Astro is configured with `ASTRO_TELEMETRY_DISABLED=1` inside package scripts so 
 - Essential content must remain usable without animation, JavaScript, canvas, or WebGL.
 - Do not add dependencies without documenting their purpose.
 - Do not add multiple libraries for the same animation responsibility.
+- GSAP is the only approved JavaScript animation dependency in the current motion phase.
 - Do not use fake statistics or skill-percentage progress bars.
 - Do not invent professional experience, project metrics, links, or outcomes.
 - Do not copy code, branding, text, or assets from inspiration websites.

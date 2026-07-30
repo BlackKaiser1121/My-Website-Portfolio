@@ -4,7 +4,11 @@ import { capabilityGroups } from "../../src/data/capabilities";
 import { contactChannels, missingContactLinks } from "../../src/data/contact";
 import { educationEntries } from "../../src/data/education";
 import { experienceEntries } from "../../src/data/experience";
-import { architectureSummary, bannedFoundationDependencies } from "../../src/data/foundation";
+import {
+  approvedMotionDependencies,
+  architectureSummary,
+  prohibitedMotionDependencies
+} from "../../src/data/foundation";
 import { navigationItems } from "../../src/data/navigation";
 import { developmentPrinciples } from "../../src/data/principles";
 import { profile } from "../../src/data/profile";
@@ -241,14 +245,14 @@ describe("portfolio content data", () => {
     }
   });
 
-  it("keeps prohibited animation and 3D packages out of the foundation dependency list", () => {
-    expect(bannedFoundationDependencies).toEqual([
+  it("documents the approved motion dependency and keeps prohibited packages separate", () => {
+    expect(approvedMotionDependencies).toEqual(["gsap"]);
+    expect(prohibitedMotionDependencies).toEqual([
       "@gsap/react",
       "@react-three/drei",
       "@react-three/fiber",
       "animejs",
       "framer-motion",
-      "gsap",
       "lenis",
       "three"
     ]);

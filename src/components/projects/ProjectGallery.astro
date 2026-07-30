@@ -13,14 +13,19 @@ const withBasePath = (src: string): string =>
 
 {
   images.length > 0 && (
-    <section id="screenshots" class="project-gallery" aria-labelledby="screenshots-title">
+    <section
+      id="screenshots"
+      class="project-gallery"
+      aria-labelledby="screenshots-title"
+      data-motion-case-study-section
+    >
       <div class="case-study-section__header">
         <p class="metadata-label">Visual Evidence</p>
         <h2 id="screenshots-title">Project Screenshots</h2>
       </div>
       <div class="project-gallery__grid">
         {images.map((image, index) => (
-          <figure aria-label={`${projectTitle} visual ${index + 1}`}>
+          <figure aria-label={`${projectTitle} visual ${index + 1}`} data-motion-case-study-visual>
             <img
               src={withBasePath(image.src)}
               alt={`${projectTitle} gallery image: ${image.caption}`}

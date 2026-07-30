@@ -79,7 +79,7 @@ const outlineItems = [
   structuredData={structuredData}
 >
   <PageShell>
-    <article class="case-study-page">
+    <article class="case-study-page" data-motion-case-study>
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
           <li><a href="../../">Home</a></li>
@@ -88,8 +88,8 @@ const outlineItems = [
         </ol>
       </nav>
 
-      <header class="case-study-hero">
-        <div class="case-study-hero__content">
+      <header class="case-study-hero" data-motion-case-study-hero>
+        <div class="case-study-hero__content" data-motion-case-study-content>
           <p class="metadata-label">{caseStudy.identifier} / {caseStudy.category}</p>
           <h1>{caseStudy.title}</h1>
           <p class="hero-lede">{caseStudy.summary}</p>
@@ -137,7 +137,7 @@ const outlineItems = [
 
         {
           heroImage && (
-            <figure class="case-study-hero__visual">
+            <figure class="case-study-hero__visual" data-motion-case-study-visual>
               <img
                 src={withBasePath(heroImage.src)}
                 alt={heroImage.alt}
@@ -152,7 +152,7 @@ const outlineItems = [
         }
       </header>
 
-      <nav class="case-study-outline" aria-label="Project">
+      <nav class="case-study-outline" aria-label="Project" data-motion-case-study-support>
         <p class="metadata-label">Case Study Index</p>
         <ol>
           {
@@ -178,7 +178,11 @@ const outlineItems = [
         <ProjectGallery images={caseStudy.screenshots} projectTitle={caseStudy.title} />
       </div>
 
-      <nav class="case-study-sequence" aria-label="Case-study sequence">
+      <nav
+        class="case-study-sequence"
+        aria-label="Case-study sequence"
+        data-motion-case-study-support
+      >
         {
           navigation.previous ? (
             <a href={navigation.previous.href}>Previous project: {navigation.previous.title}</a>
@@ -195,7 +199,11 @@ const outlineItems = [
         }
       </nav>
 
-      <section class="case-study-contact" aria-labelledby="case-study-contact-title">
+      <section
+        class="case-study-contact"
+        aria-labelledby="case-study-contact-title"
+        data-motion-case-study-support
+      >
         <p class="metadata-label">Contact</p>
         <h2 id="case-study-contact-title">Discuss similar project work</h2>
         <p>

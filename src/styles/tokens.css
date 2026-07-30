@@ -85,6 +85,18 @@
   --duration-slow: 320ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Motion tokens keep animation timing semantic and consistent across CSS and GSAP. */
+  --motion-duration-instant: 0ms;
+  --motion-duration-fast: 120ms;
+  --motion-duration-standard: 180ms;
+  --motion-duration-reveal: 420ms;
+  --motion-duration-cinematic: 760ms;
+  --motion-duration-ambient: 32000ms;
+  --motion-duration-reduced: 0ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
 }
 
 @media (min-width: 48rem) {
@@ -102,5 +114,10 @@
     --duration-fast: 0ms;
     --duration-standard: 0ms;
     --duration-slow: 0ms;
+    --motion-duration-fast: var(--motion-duration-reduced);
+    --motion-duration-standard: var(--motion-duration-reduced);
+    --motion-duration-reveal: var(--motion-duration-reduced);
+    --motion-duration-cinematic: var(--motion-duration-reduced);
+    --motion-duration-ambient: var(--motion-duration-reduced);
   }
 }

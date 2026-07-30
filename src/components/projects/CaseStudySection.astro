@@ -12,8 +12,13 @@ const hasBullets = Boolean(section.bullets?.length);
 
 {
   (hasParagraphs || hasBullets) && (
-    <section id={section.id} class="case-study-section" aria-labelledby={`${section.id}-title`}>
-      <div class="case-study-section__header">
+    <section
+      id={section.id}
+      class="case-study-section"
+      aria-labelledby={`${section.id}-title`}
+      data-motion-case-study-section
+    >
+      <div class="case-study-section__header" data-motion-case-study-section-header>
         {section.eyebrow && <p class="metadata-label">{section.eyebrow}</p>}
         <h2 id={`${section.id}-title`}>{section.title}</h2>
       </div>

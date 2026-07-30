@@ -476,6 +476,27 @@ h3 {
   transform: rotate(28deg);
 }
 
+.static-planet__marker {
+  position: absolute;
+  z-index: 2;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1px solid var(--color-border-accent);
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.42;
+}
+
+.static-planet__marker--north {
+  inset-block-start: 18%;
+  inset-inline-start: 50%;
+}
+
+.static-planet__marker--east {
+  inset-block-start: 48%;
+  inset-inline-end: 16%;
+}
+
 .section-copy {
   max-width: var(--layout-reading-max);
   display: grid;

@@ -17,6 +17,7 @@ const textId = `${slug}-architecture-text`;
   role="figure"
   aria-labelledby={titleId}
   aria-describedby={textId}
+  data-motion-architecture
 >
   <figcaption class="case-architecture__caption">
     <h2 id={titleId}>{architecture.title}</h2>
@@ -27,7 +28,7 @@ const textId = `${slug}-architecture-text`;
     <ol class="case-architecture__nodes" aria-label={`${architecture.title} nodes`}>
       {
         architecture.nodes.map((node, index) => (
-          <li>
+          <li data-motion-architecture-node>
             <span class="case-architecture__index">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <h3>{node.label}</h3>

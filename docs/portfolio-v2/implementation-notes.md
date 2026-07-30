@@ -130,3 +130,25 @@ Date: 2026-07-28
 - Corrected FAHAD deployment status: no web deployment link is expected because it is an Android application.
 - Corrected ResumeBridge status: no deployment link is verified, and the system has known fixes pending before it should be presented as stable.
 - Confirmed the content-data red state before implementation with `pnpm test`, then restored the unit suite to green after updating the content.
+
+## Phase 5 Controlled Motion Follow-Up
+
+- Preflight branch: `redesign/portfolio-v2`.
+- Preflight working tree: clean.
+- Preflight commands passed before installing dependencies: `pnpm format`, `pnpm lint`, `pnpm type-check`, `pnpm test`, `pnpm test:e2e`, and `pnpm build`.
+- Installed `gsap@3.15.0` with `pnpm add gsap`; this is the only approved JavaScript animation dependency for the Astro motion phase.
+- Did not install `@gsap/react`, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, particle libraries, smooth-scroll libraries, canvas, or WebGL dependencies.
+- Added semantic motion tokens in `src/styles/tokens.css` and controlled motion CSS in `src/styles/motion.css`.
+- Added centralized GSAP registration in `src/animation/gsap.ts`.
+- Added shared motion configuration in `src/animation/motion-config.ts`.
+- Added reduced-motion preference detection in `src/animation/reduced-motion.ts`.
+- Added reveal, architecture, project-preview, case-study, and CSS/SVG planet helpers in `src/animation/reveal.ts`.
+- Added portfolio motion bootstrapping in `src/scripts/motion.ts`, loaded once through `src/components/layout/PageShell.astro`.
+- Animated the existing CSS/SVG planet through transforms, opacity, CSS variables, and optional fine-pointer interaction; reduced-motion users receive a static planet.
+- Added restrained hero entrance, homepage section reveals, project preview reveals, architecture node reveals, and case-study page reveals without hiding content from the accessibility tree.
+- Added mobile simplification by hiding planet markers and disabling pointer interaction on coarse pointers.
+- Added unit tests in `tests/unit/motion-system.test.ts` and browser motion tests in `tests/e2e/motion.spec.ts`.
+- Confirmed TDD red states for missing motion tokens/files/hooks and missing browser motion readiness before implementation.
+- Post-build motion bundle observation: Astro emitted a client script around 120.77 kB uncompressed and 47.27 kB gzip, under the 75 kB initial JavaScript budget documented for this phase.
+- Known warning from dependency installation: pnpm reported deprecated transitive `tsconfck@3.1.6`, which already existed in the toolchain path and did not block validation.
+- WebGL is not currently necessary; the CSS/SVG planet and GSAP orchestration satisfy this phase without adding 3D dependencies.

@@ -6,17 +6,17 @@ import StaticPlanet from "./StaticPlanet.astro";
 const email = contactChannels.find((channel) => channel.icon === "mail");
 ---
 
-<section id="hero" class="hero-section" aria-labelledby="hero-title">
+<section id="hero" class="hero-section" aria-labelledby="hero-title" data-motion-hero>
   <div class="hero-section__content">
-    <p class="metadata-label">KAISER SYSTEM / Static homepage</p>
-    <h1 id="hero-title">{profile.name}</h1>
-    <p class="hero-section__role">{profile.professionalRole}</p>
-    <p class="hero-lede">{profile.valueStatement}</p>
-    <div class="hero-actions" aria-label="Primary homepage actions">
+    <p class="metadata-label" data-motion-hero-item>KAISER SYSTEM / Motion enabled</p>
+    <h1 id="hero-title" data-motion-hero-item>{profile.name}</h1>
+    <p class="hero-section__role" data-motion-hero-item>{profile.professionalRole}</p>
+    <p class="hero-lede" data-motion-hero-item>{profile.valueStatement}</p>
+    <div class="hero-actions" aria-label="Primary homepage actions" data-motion-hero-item>
       <a class="button-link button-link--primary" href="#projects">View Selected Projects</a>
       <a class="button-link" href={email?.url ?? "#contact"}>Contact Jared</a>
     </div>
-    <dl class="hero-metadata" aria-label="Current portfolio metadata">
+    <dl class="hero-metadata" aria-label="Current portfolio metadata" data-motion-hero-item>
       <div>
         <dt>Focus</dt>
         <dd>Static-first portfolio</dd>
@@ -31,7 +31,7 @@ const email = contactChannels.find((channel) => channel.icon === "mail");
       </div>
     </dl>
   </div>
-  <div class="hero-section__visual">
+  <div class="hero-section__visual" data-motion-hero-visual>
     <StaticPlanet />
   </div>
 </section>

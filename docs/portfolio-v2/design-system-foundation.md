@@ -92,10 +92,8 @@ Breakpoints are content-driven:
 - Tablet and desktop switch to inline navigation and multi-column grids when there is enough width.
 - Validation covers 320px, 390px, 768px, 1024px, 1440px, and 1680px widths with no horizontal overflow.
 
-## Known Limitations
+## Later Phase Status
 
-- Project screenshots remain missing; the supplied resume file and social links are now available through the contact content layer.
-- Footer does not include GitHub or LinkedIn because verified profile/social URLs are not available.
-- Final homepage sections are not implemented.
-- Project case-study pages are not implemented.
-- Celestial planet and motion system are not implemented.
+- Later phases added the static homepage sections, case-study pages, verified project media, social/profile links, and controlled GSAP motion system.
+- The foundation decisions still apply: shared tokens, semantic landmarks, visible focus states, and reduced-motion behavior remain required.
+- WebGL, canvas, page transitions, and a 3D planet remain deferred.
