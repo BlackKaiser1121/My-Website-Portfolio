@@ -699,7 +699,7 @@ export const projectCaseStudies = [
       title: "Security",
       paragraphs: [
         "Verified security measures include PDO database access, prepared-statement patterns, session isolation, and per-user data access.",
-        "The case study does not describe the application as fully secure because no formal security review is verified."
+        "The case study avoids stronger security claims because no formal security review is verified."
       ]
     },
     dataPrivacy: {
