@@ -152,3 +152,20 @@ Date: 2026-07-28
 - Post-build motion bundle observation: Astro emitted a client script around 120.77 kB uncompressed and 47.27 kB gzip, under the 75 kB initial JavaScript budget documented for this phase.
 - Known warning from dependency installation: pnpm reported deprecated transitive `tsconfck@3.1.6`, which already existed in the toolchain path and did not block validation.
 - WebGL is not currently necessary; the CSS/SVG planet and GSAP orchestration satisfy this phase without adding 3D dependencies.
+
+## Phase 6 Cinematic Polish Follow-Up
+
+- Preflight branch: `redesign/portfolio-v2`.
+- Preflight working tree: not clean because pre-existing untracked planet-decision documentation and screenshots were present under `docs/portfolio-v2/`; these were preserved as user changes and not mixed into the source implementation.
+- Baseline commands passed before edits after approved non-sandbox reruns where `node_modules` access hit Windows `EPERM`: `pnpm lint`, `pnpm type-check`, `pnpm test`, `pnpm test:e2e`, and `pnpm build`.
+- Added the optional first-entry initialization sequence in `src/components/motion/InitializationSequence.astro` and `src/animation/initialization.ts`.
+- The initialization sequence uses the existing GSAP infrastructure, can be skipped by click or Escape, stores completion in `sessionStorage`, avoids fake counters, avoids audio, and is skipped for reduced-motion users.
+- Refined `StaticPlanet.astro` and `global.css` with contour SVG paths, surface regions, atmospheric rim light, directional shading, and layered orbital rings while keeping the visual `aria-hidden`.
+- Refined the atmospheric background with sparse stars, faint coordinate markings, lower-contrast grid treatment, and mobile simplification.
+- Rebalanced the mobile hero so content and CTAs appear before the decorative planet.
+- Standardized section labels to numbered system-style labels while keeping professional headings readable.
+- Added mission identifiers to project previews and tightened project/navigation/contact/case-study micro-interactions through CSS.
+- Added or updated Playwright tests for the initialization sequence, reduced-motion skip behavior, mobile hero hierarchy, and mission labels.
+- Visual QA screenshots were captured under `.visual-qa/cinematic-polish/` for 390px, 768px, 1024px, 1440px, and 1920px homepage views plus Venora case-study views.
+- Current production build emitted `121.98 kB` uncompressed and `47.65 kB` gzip for the client script, compared with the previous `120.77 kB` and `47.27 kB` gzip.
+- No new dependency was installed; CSS/SVG plus GSAP remains the approved motion and celestial-visual strategy.

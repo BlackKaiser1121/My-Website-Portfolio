@@ -106,9 +106,11 @@ Assets requiring later replacement or recapture:
 - Project-specific metadata using the supplied screenshots.
 - Homepage case-study links for the three published case studies.
 - Controlled GSAP motion layer, semantic motion tokens, CSS/SVG planet animation, reduced-motion handling, and restrained homepage/case-study reveals.
+- Optional first-entry initialization sequence with skip and reduced-motion bypass.
+- Cinematic CSS/SVG planet refinement, atmospheric background refinement, mission-style project labels, and system-style section labels.
 
 ## Deferred Work
 
 - WebGL, Three.js, React Three Fiber, Drei, canvas, or a true 3D planet.
-- Page transitions or initialization sequence.
+- Page transitions.
 - Active-section scroll tracking.

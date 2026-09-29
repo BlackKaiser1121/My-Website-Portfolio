@@ -18,6 +18,7 @@ export const motionSelectors = {
   hero: "[data-motion-hero]",
   heroItem: "[data-motion-hero-item]",
   heroVisual: "[data-motion-hero-visual]",
+  initialization: "[data-init-sequence]",
   planet: "[data-motion-planet]",
   section: "[data-motion-section]",
   projectPreview: "[data-motion-project-preview]",

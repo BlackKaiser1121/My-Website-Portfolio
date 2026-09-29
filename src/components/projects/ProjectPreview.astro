@@ -8,6 +8,7 @@ interface Props {
 
 const { project, index } = Astro.props;
 const projectNumber = String(index + 1).padStart(2, "0");
+const missionLabel = `MISSION ${projectNumber}`;
 ---
 
 <article
@@ -39,6 +40,7 @@ const projectNumber = String(index + 1).padStart(2, "0");
     )
   }
   <div class="project-preview__content" data-motion-project-content>
+    <p class="project-preview__mission">{missionLabel}</p>
     <p class="project-status">{project.category} / {project.status}</p>
     <h3 id={`${project.slug}-title`}>{project.title}</h3>
     <p>{project.summary}</p>

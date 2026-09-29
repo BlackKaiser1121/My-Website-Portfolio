@@ -188,14 +188,33 @@ test.describe("Portfolio V2 foundation shell", () => {
     await page.getByRole("link", { name: "View Selected Projects" }).click();
 
     await expect(page.locator("#projects")).toBeInViewport();
-    await expect(
-      page.getByRole("heading", { level: 2, name: "Selected Project Previews" })
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { level: 2, name: "Featured Projects" })).toBeVisible();
+  });
+
+  test("keeps mobile hero content ahead of the decorative planet", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("./");
+
+    const titleTop = await page
+      .getByRole("heading", { level: 1, name: "Jared Baquirin" })
+      .evaluate((element) => element.getBoundingClientRect().top);
+    const planetTop = await page
+      .locator('[data-portfolio-visual="static-planet"]')
+      .evaluate((element) => element.getBoundingClientRect().top);
+    const ctaBottom = await page
+      .getByRole("link", { name: "View Selected Projects" })
+      .evaluate((element) => element.getBoundingClientRect().bottom);
+
+    expect(titleTop).toBeLessThan(planetTop);
+    expect(ctaBottom).toBeLessThanOrEqual(844);
   });
 
   test("renders featured project previews without broken unavailable links", async ({ page }) => {
     await page.goto("./");
 
+    await expect(page.getByText("MISSION 01")).toBeVisible();
+    await expect(page.getByText("MISSION 02")).toBeVisible();
+    await expect(page.getByText("MISSION 03")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Venora" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "FAHAD" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "ResumeBridge" })).toBeVisible();
@@ -374,7 +393,7 @@ test.describe("Portfolio V2 foundation shell", () => {
 
       await expect(page.getByRole("heading", { level: 1, name: "Jared Baquirin" })).toBeVisible();
       await expect(page.locator('[data-portfolio-visual="static-planet"]')).toBeVisible();
-      await expect(page.getByRole("heading", { name: "Selected Project Previews" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Featured Projects" })).toBeVisible();
     });
   }
 });

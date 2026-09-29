@@ -51,6 +51,7 @@ test.describe("Portfolio V2 case-study routes", () => {
       await page.goto(`projects/${caseStudy.slug}/`);
 
       await expect(page.getByRole("heading", { level: 1, name: caseStudy.title })).toBeVisible();
+      await expect(page.getByRole("heading", { level: 2, name: "Overview" })).toBeVisible();
       await expect(page.getByRole("main")).toHaveAttribute("id", "main");
       await expect(page.getByRole("navigation", { name: "Breadcrumb" })).toBeVisible();
       await expect(page.getByRole("link", { name: "Back to selected projects" })).toHaveAttribute(
@@ -86,14 +87,32 @@ test.describe("Portfolio V2 case-study routes", () => {
         page.getByRole("link", { name: `Email Jared Baquirin about ${caseStudy.title}` })
       ).toHaveAttribute("href", "mailto:jared.baquirin112@gmail.com");
 
-      const headings = await page
-        .locator("h1, h2, h3, h4, h5, h6")
-        .evaluateAll((nodes) => nodes.map((node) => Number(node.tagName.replace("H", ""))));
+      const headings = await page.locator("h1, h2, h3, h4, h5, h6").evaluateAll((nodes) =>
+        nodes.map((node) => {
+          const style = window.getComputedStyle(node);
+          const rect = node.getBoundingClientRect();
 
-      expect(headings.filter((level) => level === 1)).toHaveLength(1);
+          return {
+            level: Number(node.tagName.slice(1)),
+            text: (node.textContent ?? "").trim(),
+            visible:
+              style.display !== "none" &&
+              style.visibility !== "hidden" &&
+              Number(style.opacity) > 0 &&
+              rect.width > 0 &&
+              rect.height > 0
+          };
+        })
+      );
+      const pageHeadings = headings.filter((heading) => heading.level === 1);
+
+      expect(
+        pageHeadings,
+        `Expected exactly one <h1> on ${new URL(page.url()).pathname}; found ${JSON.stringify(pageHeadings)}`
+      ).toHaveLength(1);
       for (let index = 1; index < headings.length; index++) {
-        const current = headings[index];
-        const previous = headings[index - 1];
+        const current = headings[index]?.level;
+        const previous = headings[index - 1]?.level;
 
         if (current === undefined || previous === undefined) {
           throw new Error("Expected adjacent headings to exist");

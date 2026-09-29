@@ -46,9 +46,18 @@ html[data-motion-preference="full"] [data-motion-planet-ring] {
   animation: planet-ring-orbit 36000ms linear infinite;
 }
 
-html[data-motion-preference="full"] [data-motion-planet-ring]:nth-of-type(3) {
+html[data-motion-preference="full"] .static-planet__ring--back {
+  animation-duration: 44000ms;
+  animation-direction: reverse;
+}
+
+html[data-motion-preference="full"] .static-planet__ring--tilt {
   animation-duration: 52000ms;
   animation-direction: reverse;
+}
+
+html[data-motion-preference="full"] .static-planet__ring--front {
+  animation-duration: 60000ms;
 }
 
 html[data-motion-preference="full"] [data-motion-planet-marker] {
@@ -76,6 +85,48 @@ html[data-motion-preference="full"] [data-motion-planet-marker] {
 [data-motion-project-preview]:focus-within .project-preview__visual,
 [data-motion-project-preview]:hover .project-preview__visual {
   border-color: var(--color-border-accent);
+}
+
+[data-motion-project-preview]:focus-within .project-actions a,
+[data-motion-project-preview]:hover .project-actions a {
+  border-color: var(--color-border-strong);
+}
+
+.site-nav__list a,
+.button-link,
+.project-actions a,
+.contact-actions a,
+.case-study-sequence a {
+  position: relative;
+}
+
+.site-nav__list a::after,
+.button-link::after,
+.project-actions a::after,
+.contact-actions a::after,
+.case-study-sequence a::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-3);
+  inset-block-end: 0.42rem;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--color-border-accent);
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.site-nav__list a:hover::after,
+.site-nav__list a:focus-visible::after,
+.button-link:hover::after,
+.button-link:focus-visible::after,
+.project-actions a:hover::after,
+.project-actions a:focus-visible::after,
+.contact-actions a:hover::after,
+.contact-actions a:focus-visible::after,
+.case-study-sequence a:hover::after,
+.case-study-sequence a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 @keyframes planet-float {
@@ -127,7 +178,7 @@ html[data-motion-preference="full"] [data-motion-planet-marker] {
 
 @media (max-width: 30rem) {
   html[data-motion-preference="full"] [data-motion-planet] {
-    animation-duration: 42000ms;
+    animation-duration: 52000ms;
   }
 
   [data-motion-planet-marker] {

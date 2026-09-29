@@ -94,6 +94,6 @@ Breakpoints are content-driven:
 
 ## Later Phase Status
 
-- Later phases added the static homepage sections, case-study pages, verified project media, social/profile links, and controlled GSAP motion system.
+- Later phases added the static homepage sections, case-study pages, verified project media, social/profile links, controlled GSAP motion system, optional initialization sequence, refined CSS/SVG planet, and cinematic atmosphere polish.
 - The foundation decisions still apply: shared tokens, semantic landmarks, visible focus states, and reduced-motion behavior remain required.
 - WebGL, canvas, page transitions, and a 3D planet remain deferred.

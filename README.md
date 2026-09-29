@@ -2,7 +2,7 @@
 
 Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro portfolio. The active toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
 
-The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, accessible screenshot handling, and a controlled GSAP motion layer. It does not implement WebGL, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, smooth-scroll libraries, page transitions, or a 3D planet.
+The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, accessible screenshot handling, a controlled GSAP motion layer, an optional first-entry initialization sequence, and refined CSS/SVG celestial polish. It does not implement WebGL, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, smooth-scroll libraries, page transitions, or a 3D planet.
 
 ## Commands
 
@@ -49,8 +49,10 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - Project preview component: `src/components/projects/ProjectPreview.astro`
 - Motion tokens: `src/styles/tokens.css`
 - Motion stylesheet: `src/styles/motion.css`
+- Initialization sequence: `src/components/motion/InitializationSequence.astro`
 - GSAP registration: `src/animation/gsap.ts`
 - Shared motion config: `src/animation/motion-config.ts`
+- Initialization controller: `src/animation/initialization.ts`
 - Reduced-motion detection: `src/animation/reduced-motion.ts`
 - Reveal and planet helpers: `src/animation/reveal.ts`
 - Motion bootstrap: `src/scripts/motion.ts`
@@ -94,7 +96,7 @@ The local Playwright config uses installed Chrome on Windows when not running in
 ## Known Limitations
 
 - The enhanced planet remains CSS/SVG only; WebGL and 3D planet work are intentionally absent.
-- Page transitions and initialization sequences are still deferred.
+- Page transitions are still deferred.
 - Additional measured project results are still missing.
 - FAHAD has no web deployment link because it is an Android application, so it is intentionally rendered without a live-demo anchor.
 - ResumeBridge has no deployment link and has known system fixes pending before it should be presented as a stable public deployment.

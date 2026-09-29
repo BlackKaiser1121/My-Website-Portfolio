@@ -13,6 +13,50 @@ const homepageSections = [
 ];
 
 test.describe("Portfolio V2 controlled motion", () => {
+  test("shows a skippable first-entry initialization sequence without blocking content", async ({
+    page
+  }) => {
+    await page.addInitScript(() => sessionStorage.clear());
+    await page.goto("./");
+
+    const intro = page.locator("[data-init-sequence]");
+    await expect(intro).toHaveAttribute("data-init-state", "active");
+    await expect(page.getByRole("heading", { level: 1, name: "Jared Baquirin" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "View Selected Projects" })).toBeVisible();
+
+    await page.getByRole("button", { name: "Skip initialization sequence" }).click();
+
+    await expect(intro).toHaveAttribute("data-init-state", "complete");
+    await expect(page.locator("html")).toHaveAttribute("data-intro-sequence", "complete");
+    await expect(page.getByRole("link", { name: "Profile", exact: true })).toBeVisible();
+
+    await page.getByRole("link", { name: "Open Venora case study" }).click();
+    await expect(page.locator("[data-init-sequence]")).toHaveAttribute(
+      "data-init-state",
+      "complete"
+    );
+  });
+
+  test("skips the initialization sequence for reduced-motion users", async ({ browser }) => {
+    const context = await browser.newContext({ reducedMotion: "reduce" });
+    const page = await context.newPage();
+
+    await page.addInitScript(() => sessionStorage.clear());
+    await page.goto("./");
+
+    await expect(page.locator("[data-init-sequence]")).toHaveAttribute(
+      "data-init-state",
+      "skipped"
+    );
+    await expect(page.locator("html")).toHaveAttribute("data-intro-sequence", "skipped");
+    await expect(
+      page.getByRole("button", { name: "Skip initialization sequence" })
+    ).not.toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: "Jared Baquirin" })).toBeVisible();
+
+    await context.close();
+  });
+
   test("initializes full motion without hiding essential homepage content", async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on("console", (message) => {
