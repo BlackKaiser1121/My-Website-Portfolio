@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import SkipLink from "../components/layout/SkipLink.astro";
+import { publicPath } from "../utils/public-url";
+---
+
+<BaseLayout
+  title="Page not found - Jared Baquirin"
+  description="The requested portfolio page could not be found. Return to Jared Baquirin's homepage."
+  indexable={false}
+>
+  <div id="top" class="site-shell">
+    <SkipLink />
+    <header class="site-header">
+      <a class="site-nav__mark" href={publicPath("/")}>Jared Baquirin</a>
+    </header>
+    <main id="main" class="site-main" tabindex="-1">
+      <section class="intro-section" aria-labelledby="not-found-title">
+        <div class="intro-section__content">
+          <p class="metadata-label">404 / NOT FOUND</p>
+          <h1 id="not-found-title">Page not found</h1>
+          <p class="hero-lede">This page is not part of the published portfolio.</p>
+          <a class="button-link button-link--primary" href={publicPath("/")}>Return home</a>
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

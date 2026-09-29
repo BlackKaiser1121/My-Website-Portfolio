@@ -1,0 +1,226 @@
+---
+import { contactChannels } from "../../data/contact";
+import { getCaseStudyNavigation } from "../../data/case-studies";
+import { profile } from "../../data/profile";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageShell from "../layout/PageShell.astro";
+import CaseStudySectionComponent from "./CaseStudySection.astro";
+import ProjectArchitectureDiagram from "./ProjectArchitectureDiagram.astro";
+import ProjectGallery from "./ProjectGallery.astro";
+import type { CaseStudySection, ProjectCaseStudy } from "../../types/portfolio";
+import { absolutePublicUrl } from "../../utils/public-url";
+
+interface Props {
+  caseStudy: ProjectCaseStudy;
+}
+
+const { caseStudy } = Astro.props;
+const navigation = getCaseStudyNavigation(caseStudy.slug);
+const contactEmail = contactChannels.find((channel) => channel.icon === "mail");
+const heroImage = caseStudy.screenshots[0];
+const withBasePath = (src: string): string =>
+  `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}${src.replace(/^\//, "")}`;
+if (!Astro.site) {
+  throw new Error("Astro site must be configured for production URLs.");
+}
+
+const canonicalUrl = absolutePublicUrl(caseStudy.seo.canonicalPath, Astro.site);
+const structuredImage = caseStudy.seo.ogImage ?? heroImage?.src;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: `${caseStudy.title} case study`,
+  headline: caseStudy.seo.title,
+  description: caseStudy.seo.description,
+  url: canonicalUrl,
+  author: {
+    "@type": "Person",
+    name: profile.name,
+    url: "https://github.com/BlackKaiser1121"
+  },
+  about: caseStudy.title,
+  image: structuredImage ? absolutePublicUrl(structuredImage, Astro.site) : undefined
+};
+
+const sections: readonly CaseStudySection[] = [
+  caseStudy.overview,
+  caseStudy.problem,
+  caseStudy.users,
+  caseStudy.goals,
+  caseStudy.constraints,
+  caseStudy.responsibilities,
+  ...caseStudy.features,
+  caseStudy.security,
+  caseStudy.dataPrivacy,
+  caseStudy.ux,
+  caseStudy.qa,
+  ...caseStudy.challenges,
+  ...caseStudy.solutions,
+  ...caseStudy.tradeOffs,
+  caseStudy.results,
+  caseStudy.performance,
+  caseStudy.lessons,
+  caseStudy.futureWork
+].filter((section): section is CaseStudySection =>
+  Boolean(section && (section.paragraphs?.length || section.bullets?.length))
+);
+
+const outlineItems = [
+  ...sections.map((section) => ({ href: `#${section.id}`, label: section.title })),
+  caseStudy.architecture ? { href: "#architecture", label: "Architecture" } : undefined,
+  caseStudy.screenshots.length > 0 ? { href: "#screenshots", label: "Screenshots" } : undefined
+].filter((item): item is { href: string; label: string } => Boolean(item));
+---
+
+<BaseLayout
+  title={caseStudy.seo.title}
+  description={caseStudy.seo.description}
+  canonicalPath={caseStudy.seo.canonicalPath}
+  ogImage={caseStudy.seo.ogImage}
+  ogType="article"
+  structuredData={structuredData}
+>
+  <PageShell>
+    <article class="case-study-page" data-motion-case-study>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../../">Home</a></li>
+          <li><a href="../../#projects">Selected projects</a></li>
+          <li aria-current="page">{caseStudy.title}</li>
+        </ol>
+      </nav>
+
+      <header class="case-study-hero" data-motion-case-study-hero>
+        <div class="case-study-hero__content" data-motion-case-study-content>
+          <p class="metadata-label">{caseStudy.identifier} / {caseStudy.category}</p>
+          <h1>{caseStudy.title}</h1>
+          <p class="hero-lede">{caseStudy.summary}</p>
+
+          <dl class="case-study-meta">
+            <div>
+              <dt>Status</dt>
+              <dd>{caseStudy.statusLabel}</dd>
+            </div>
+            <div>
+              <dt>Date</dt>
+              <dd>{caseStudy.dateRange}</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>{caseStudy.role.join(", ")}</dd>
+            </div>
+          </dl>
+
+          <ul
+            class="technology-list"
+            aria-label={`${caseStudy.shortTitle} case-study technologies`}
+          >
+            {caseStudy.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+
+          <div class="project-actions" aria-label={`${caseStudy.shortTitle} case-study actions`}>
+            <a href="../../#projects">Back to selected projects</a>
+            {
+              caseStudy.repositoryUrl && (
+                <a href={caseStudy.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                  Open {caseStudy.title} repository
+                </a>
+              )
+            }
+            {
+              caseStudy.liveUrl && (
+                <a href={caseStudy.liveUrl} target="_blank" rel="noopener noreferrer">
+                  Open {caseStudy.title} live demo
+                </a>
+              )
+            }
+          </div>
+        </div>
+
+        {
+          heroImage && (
+            <figure class="case-study-hero__visual" data-motion-case-study-visual>
+              <img
+                src={withBasePath(heroImage.src)}
+                alt={heroImage.alt}
+                width={heroImage.width}
+                height={heroImage.height}
+                loading="eager"
+                decoding="async"
+              />
+              <figcaption>{heroImage.caption}</figcaption>
+            </figure>
+          )
+        }
+      </header>
+
+      <nav class="case-study-outline" aria-label="Project" data-motion-case-study-support>
+        <p class="metadata-label">Case Study Index</p>
+        <ol>
+          {
+            outlineItems.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <div class="case-study-content">
+        {sections.map((section) => <CaseStudySectionComponent section={section} />)}
+        {
+          caseStudy.architecture && (
+            <ProjectArchitectureDiagram
+              architecture={caseStudy.architecture}
+              slug={caseStudy.slug}
+            />
+          )
+        }
+        <ProjectGallery images={caseStudy.screenshots} projectTitle={caseStudy.title} />
+      </div>
+
+      <nav
+        class="case-study-sequence"
+        aria-label="Case-study sequence"
+        data-motion-case-study-support
+      >
+        {
+          navigation.previous ? (
+            <a href={navigation.previous.href}>Previous project: {navigation.previous.title}</a>
+          ) : (
+            <span>First selected project</span>
+          )
+        }
+        {
+          navigation.next ? (
+            <a href={navigation.next.href}>Next project: {navigation.next.title}</a>
+          ) : (
+            <span>Final selected project</span>
+          )
+        }
+      </nav>
+
+      <section
+        class="case-study-contact"
+        aria-labelledby="case-study-contact-title"
+        data-motion-case-study-support
+      >
+        <p class="metadata-label">Contact</p>
+        <h2 id="case-study-contact-title">Discuss similar project work</h2>
+        <p>
+          For internship, collaboration, or project conversations, contact {profile.name} directly.
+        </p>
+        <div class="contact-actions">
+          <a
+            href={contactEmail?.url ?? `mailto:${profile.email}`}
+            aria-label={`Email Jared Baquirin about ${caseStudy.title}`}
+          >
+            Email Jared about this project
+          </a>
+          <a href="../../#contact">Open portfolio contact section</a>
+        </div>
+      </section>
+    </article>
+  </PageShell>
+</BaseLayout>

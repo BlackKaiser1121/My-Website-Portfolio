@@ -1,0 +1,9 @@
+.astro/
+dist/
+node_modules/
+.pnpm-store/
+coverage/
+test-results/
+playwright-report/
+.visual-qa/
+npm-debug.log*

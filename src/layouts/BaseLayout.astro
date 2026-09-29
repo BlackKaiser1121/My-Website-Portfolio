@@ -1,0 +1,66 @@
+---
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/motion.css";
+import { absolutePublicUrl, publicPath } from "../utils/public-url";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string | undefined;
+  ogType?: "website" | "article";
+  structuredData?: Record<string, unknown> | readonly Record<string, unknown>[] | undefined;
+  indexable?: boolean;
+}
+
+const {
+  title = "Jared Baquirin Portfolio V2",
+  description = "Portfolio V2 foundation for Jared Baquirin's static-first Astro website.",
+  canonicalPath = "/",
+  ogImage,
+  ogType = "website",
+  structuredData,
+  indexable = true
+} = Astro.props;
+
+if (!Astro.site) {
+  throw new Error("Astro site must be configured for production URLs.");
+}
+
+const canonicalUrl = absolutePublicUrl(canonicalPath, Astro.site);
+const faviconPath = publicPath("favicon.svg");
+const ogImageUrl = ogImage ? absolutePublicUrl(ogImage, Astro.site) : undefined;
+const jsonLd = structuredData ? JSON.stringify(structuredData).replace(/</g, "\\u003c") : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#050706" />
+    {!indexable && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={faviconPath} type="image/svg+xml" />
+    {indexable && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    {indexable && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:site_name" content="Jared Baquirin" />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:alt" content={`${title} portfolio preview`} />}
+    {ogImageUrl && <meta property="og:image:width" content="1400" />}
+    {ogImageUrl && <meta property="og:image:height" content="735" />}
+    <meta name="twitter:card" content={ogImageUrl ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

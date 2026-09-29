@@ -1,0 +1,19 @@
+---
+import { architecturePreview } from "../../data/architecture";
+import ArchitectureDiagram from "../architecture/ArchitectureDiagram.astro";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="architecture" label="03 // ARCHITECTURE" heading="Static Architecture Preview">
+  <div class="architecture-preview">
+    <div class="section-copy">
+      <h3>{architecturePreview.title}</h3>
+      <p>{architecturePreview.summary}</p>
+      <p>
+        This is intentionally simplified for the homepage. The diagram is static, readable without
+        animation, and backed by a text alternative.
+      </p>
+    </div>
+    <ArchitectureDiagram preview={architecturePreview} />
+  </div>
+</SectionShell>

@@ -1,0 +1,25 @@
+---
+import { capabilityGroups } from "../../data/capabilities";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="capabilities" label="04 // CAPABILITIES" heading="Engineering Capabilities">
+  <div class="capability-grid">
+    {
+      capabilityGroups.map((group) => (
+        <section class="capability-group" aria-labelledby={`${group.id}-title`}>
+          <h3 id={`${group.id}-title`}>{group.title}</h3>
+          <p>{group.summary}</p>
+          <ul>
+            {group.items.map((item) => (
+              <li>
+                <span>{item.label}</span>
+                <em>{item.evidence}</em>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</SectionShell>

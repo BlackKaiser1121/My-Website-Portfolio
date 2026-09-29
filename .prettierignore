@@ -1,0 +1,13 @@
+.astro/
+dist/
+node_modules/
+coverage/
+test-results/
+playwright-report/
+
+# Legacy production files are preserved as rollback assets until the Astro build replaces them.
+index.html
+style.css
+
+# Existing planning documents are source-of-truth records; avoid format-only churn.
+docs/portfolio-v2/*.md

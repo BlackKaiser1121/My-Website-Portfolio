@@ -1,0 +1,31 @@
+---
+import { experienceEntries } from "../../data/experience";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="experience" label="05 // EXPERIENCE" heading="Experience">
+  <div class="timeline-list">
+    {
+      experienceEntries.map((entry) => (
+        <article class="timeline-entry">
+          <p class="project-status">
+            {entry.kind.replace("-", " ")} / {entry.dateRange}
+          </p>
+          <h3>{entry.title}</h3>
+          {entry.organization && <p>{entry.organization}</p>}
+          <p>{entry.summary}</p>
+          <ul>
+            {entry.responsibilities.map((responsibility) => (
+              <li>{responsibility}</li>
+            ))}
+          </ul>
+          <p class="project-tech">{entry.tools.join(", ")}</p>
+        </article>
+      ))
+    }
+  </div>
+  <p class="section-note">
+    No paid professional employment or volunteer role is rendered because the repository does not
+    contain verified details for those categories.
+  </p>
+</SectionShell>

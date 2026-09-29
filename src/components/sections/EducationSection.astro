@@ -1,0 +1,25 @@
+---
+import { educationEntries } from "../../data/education";
+import SectionShell from "../layout/SectionShell.astro";
+---
+
+<SectionShell id="education" label="06 // EDUCATION" heading="Education">
+  <div class="content-grid">
+    {
+      educationEntries.map((entry) => (
+        <article class="content-card">
+          <p class="project-status">{entry.level}</p>
+          <h3>{entry.program}</h3>
+          {entry.institution && <p>{entry.institution}</p>}
+          {entry.dateRange && <p>{entry.dateRange}</p>}
+          <p>{entry.summary}</p>
+          <ul class="technology-list" aria-label={`${entry.program} focus areas`}>
+            {entry.focusAreas.map((area) => (
+              <li>{area}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</SectionShell>

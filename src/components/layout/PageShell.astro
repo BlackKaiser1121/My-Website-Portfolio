@@ -1,0 +1,23 @@
+---
+import SiteNav from "../navigation/SiteNav.astro";
+import SiteFooter from "./SiteFooter.astro";
+import SkipLink from "./SkipLink.astro";
+import InitializationSequence from "../motion/InitializationSequence.astro";
+---
+
+<div id="top" class="site-shell">
+  <SkipLink />
+  <InitializationSequence />
+  <div class="atmosphere-layer" aria-hidden="true"></div>
+  <header class="site-header">
+    <SiteNav />
+  </header>
+  <main id="main" class="site-main" tabindex="-1">
+    <slot />
+  </main>
+  <SiteFooter />
+</div>
+
+<script>
+  import "../../scripts/motion";
+</script>

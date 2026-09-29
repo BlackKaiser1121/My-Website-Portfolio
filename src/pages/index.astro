@@ -1,0 +1,60 @@
+---
+import ArchitecturePreviewSection from "../components/sections/ArchitecturePreviewSection.astro";
+import CapabilitiesSection from "../components/sections/CapabilitiesSection.astro";
+import ContactSection from "../components/sections/ContactSection.astro";
+import EducationSection from "../components/sections/EducationSection.astro";
+import ExperienceSection from "../components/sections/ExperienceSection.astro";
+import PrinciplesSection from "../components/sections/PrinciplesSection.astro";
+import ProfileSection from "../components/sections/ProfileSection.astro";
+import SelectedProjectsSection from "../components/sections/SelectedProjectsSection.astro";
+import HeroSection from "../components/hero/HeroSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageShell from "../components/layout/PageShell.astro";
+import { profile } from "../data/profile";
+import { absolutePublicUrl } from "../utils/public-url";
+
+if (!Astro.site) {
+  throw new Error("Astro site must be configured for production URLs.");
+}
+
+const homeUrl = absolutePublicUrl("/", Astro.site);
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: homeUrl,
+    jobTitle: "Full-Stack Developer",
+    sameAs: [
+      "https://github.com/BlackKaiser1121",
+      "https://www.linkedin.com/in/jared-baquirin-32679a384/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Jared Baquirin Portfolio",
+    url: homeUrl,
+    description: profile.valueStatement
+  }
+];
+---
+
+<BaseLayout
+  title="Jared Baquirin - Full-Stack Developer, QA, UI/UX"
+  description="Explore Jared Baquirin's full-stack, QA, and UI/UX work through Venora, FAHAD, and ResumeBridge project case studies."
+  ogImage="assets/social/portfolio-home.png"
+  structuredData={structuredData}
+>
+  <PageShell>
+    <HeroSection />
+    <ProfileSection />
+    <SelectedProjectsSection />
+    <ArchitecturePreviewSection />
+    <CapabilitiesSection />
+    <ExperienceSection />
+    <EducationSection />
+    <PrinciplesSection />
+    <ContactSection />
+  </PageShell>
+</BaseLayout>

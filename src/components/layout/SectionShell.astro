@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  heading: string;
+  variant?: "default" | "compact";
+}
+
+const { id, label, heading, variant = "default" } = Astro.props;
+const headingId = `${id}-title`;
+---
+
+<section
+  id={id}
+  class:list={["section-shell", `section-shell--${variant}`]}
+  aria-labelledby={headingId}
+  tabindex="-1"
+  data-motion-section
+>
+  <div class="section-shell__header" data-motion-section-header>
+    <p class="metadata-label">{label}</p>
+    <h2 id={headingId}>{heading}</h2>
+  </div>
+  <slot />
+</section>

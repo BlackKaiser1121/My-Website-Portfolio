@@ -1,0 +1,40 @@
+---
+import { educationEntries } from "../../data/education";
+import { availability } from "../../data/experience";
+import { profile } from "../../data/profile";
+import SectionShell from "../layout/SectionShell.astro";
+
+const education = educationEntries[0];
+---
+
+<SectionShell id="profile" label="01 // PROFILE" heading="Professional Profile">
+  <div class="section-copy">
+    <p>{profile.currentPositioning}</p>
+    <p>
+      {profile.about} The current Portfolio V2 direction presents that work through a full-stack, QA,
+      and UI/UX lens without inflating titles or adding unsupported metrics.
+    </p>
+  </div>
+  <dl class="info-grid" aria-label="Profile facts">
+    <div>
+      <dt>Education</dt>
+      <dd>{education?.program}</dd>
+    </div>
+    <div>
+      <dt>Current focus</dt>
+      <dd>{profile.focusAreas.join(", ")}</dd>
+    </div>
+    <div>
+      <dt>Primary disciplines</dt>
+      <dd>Web, mobile, AI, QA, and interface design</dd>
+    </div>
+    <div>
+      <dt>Location</dt>
+      <dd>{profile.location}</dd>
+    </div>
+    <div>
+      <dt>Availability</dt>
+      <dd>{availability.summary}</dd>
+    </div>
+  </dl>
+</SectionShell>

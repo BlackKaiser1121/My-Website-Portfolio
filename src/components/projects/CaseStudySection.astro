@@ -1,0 +1,35 @@
+---
+import type { CaseStudySection } from "../../types/portfolio";
+
+interface Props {
+  section: CaseStudySection;
+}
+
+const { section } = Astro.props;
+const hasParagraphs = Boolean(section.paragraphs?.length);
+const hasBullets = Boolean(section.bullets?.length);
+---
+
+{
+  (hasParagraphs || hasBullets) && (
+    <section
+      id={section.id}
+      class="case-study-section"
+      aria-labelledby={`${section.id}-title`}
+      data-motion-case-study-section
+    >
+      <div class="case-study-section__header" data-motion-case-study-section-header>
+        {section.eyebrow && <p class="metadata-label">{section.eyebrow}</p>}
+        <h2 id={`${section.id}-title`}>{section.title}</h2>
+      </div>
+      {hasParagraphs && section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+      {hasBullets && (
+        <ul>
+          {section.bullets?.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}

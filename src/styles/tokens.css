@@ -1,0 +1,123 @@
+:root {
+  color-scheme: dark;
+
+  --color-background: #050706;
+  --color-background-elevated: #0b0e0d;
+  --color-surface: #101413;
+  --color-panel: #171c1a;
+  --color-interactive: #1c241f;
+  --color-overlay: rgba(5, 7, 6, 0.88);
+
+  --color-text-primary: #f2f5ef;
+  --color-text-secondary: #c3cbc2;
+  --color-text-muted: #9fa99f;
+  --color-text-inverse: #050706;
+  --color-text-accent: #74f28f;
+  --color-text-disabled: #69726c;
+
+  --color-border-subtle: rgba(242, 245, 239, 0.08);
+  --color-border: rgba(242, 245, 239, 0.14);
+  --color-border-strong: rgba(242, 245, 239, 0.24);
+  --color-border-accent: rgba(116, 242, 143, 0.58);
+  --color-border-focus: #a8ffbf;
+
+  --color-accent: #74f28f;
+  --color-accent-hover: #92f8a6;
+  --color-accent-active: #4fdc72;
+  --color-status-success: #74f28f;
+  --color-status-warning: #f0b35a;
+  --color-status-error: #ff7a7a;
+  --color-status-info: #7bded8;
+
+  --effect-glow-subtle: 0 0 32px rgba(116, 242, 143, 0.08);
+  --effect-glow-active: 0 0 0 1px rgba(116, 242, 143, 0.58);
+  --effect-panel-backdrop: rgba(16, 20, 19, 0.92);
+  --effect-line-opacity: 0.22;
+  --effect-grid-opacity: 0.12;
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.22);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.28);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  --layout-content-max: 72rem;
+  --layout-reading-max: 42rem;
+  --layout-header-height: 4.5rem;
+  --layout-section-spacing: var(--space-8);
+  --layout-container-padding: var(--space-5);
+  --layout-grid-gap: var(--space-5);
+
+  --radius-1: 0.25rem;
+  --radius-2: 0.375rem;
+  --radius-panel: 0.5rem;
+
+  --font-sans: "Aptos", "Helvetica Neue", "Noto Sans", sans-serif;
+  --font-mono: "Cascadia Mono", "SFMono-Regular", "Liberation Mono", monospace;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+
+  --text-display: 3rem;
+  --text-page: 2.25rem;
+  --text-section: 1.75rem;
+  --text-subsection: 1.125rem;
+  --text-body-large: 1.125rem;
+  --text-body: 1rem;
+  --text-supporting: 0.9375rem;
+  --text-caption: 0.875rem;
+  --text-metadata: 0.8125rem;
+  --text-nav: 0.9375rem;
+  --text-button: 0.9375rem;
+
+  --line-display: 1.04;
+  --line-heading: 1.16;
+  --line-body: 1.65;
+  --line-compact: 1.35;
+
+  --duration-fast: 120ms;
+  --duration-standard: 180ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Motion tokens keep animation timing semantic and consistent across CSS and GSAP. */
+  --motion-duration-instant: 0ms;
+  --motion-duration-fast: 120ms;
+  --motion-duration-standard: 180ms;
+  --motion-duration-reveal: 420ms;
+  --motion-duration-cinematic: 760ms;
+  --motion-duration-ambient: 32000ms;
+  --motion-duration-reduced: 0ms;
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --layout-container-padding: var(--space-6);
+    --layout-section-spacing: 5rem;
+    --text-display: 4.5rem;
+    --text-page: 3rem;
+    --text-section: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-standard: 0ms;
+    --duration-slow: 0ms;
+    --motion-duration-fast: var(--motion-duration-reduced);
+    --motion-duration-standard: var(--motion-duration-reduced);
+    --motion-duration-reveal: var(--motion-duration-reduced);
+    --motion-duration-cinematic: var(--motion-duration-reduced);
+    --motion-duration-ambient: var(--motion-duration-reduced);
+  }
+}

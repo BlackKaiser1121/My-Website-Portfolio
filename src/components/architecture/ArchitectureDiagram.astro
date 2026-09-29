@@ -1,0 +1,27 @@
+---
+import type { ArchitecturePreview } from "../../types/portfolio";
+
+interface Props {
+  preview: ArchitecturePreview;
+}
+
+const { preview } = Astro.props;
+---
+
+<figure
+  class="architecture-diagram"
+  aria-labelledby="architecture-diagram-title"
+  data-motion-architecture
+>
+  <figcaption id="architecture-diagram-title">{preview.textAlternative}</figcaption>
+  <ol class="architecture-diagram__nodes">
+    {
+      preview.nodes.map((node) => (
+        <li data-motion-architecture-node>
+          <span>{node.label}</span>
+          <p>{node.detail}</p>
+        </li>
+      ))
+    }
+  </ol>
+</figure>
