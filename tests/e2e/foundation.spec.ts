@@ -7,6 +7,8 @@ const viewports = [
   { width: 1024, height: 900 },
   { width: 768, height: 900 },
   { width: 390, height: 844 },
+  { width: 360, height: 780 },
+  { width: 430, height: 900 },
   { width: 320, height: 720 }
 ];
 
@@ -90,6 +92,7 @@ test.describe("Portfolio V2 foundation shell", () => {
   });
 
   test("provides a keyboard-accessible skip link and navigation", async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem("portfolio-v2-intro-complete", "true"));
     await page.goto("./");
 
     const skipLink = page.getByRole("link", { name: "Skip to main content" });
@@ -127,6 +130,7 @@ test.describe("Portfolio V2 foundation shell", () => {
   });
 
   test("moves keyboard focus through every desktop navigation link", async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem("portfolio-v2-intro-complete", "true"));
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("./");
     const navigation = page.getByRole("navigation", { name: "Primary" });
@@ -263,6 +267,12 @@ test.describe("Portfolio V2 foundation shell", () => {
       "href",
       "./projects/resumebridge/"
     );
+    for (const image of await page.locator(".project-preview__visual--asset img").all()) {
+      await image.scrollIntoViewIfNeeded();
+      await expect
+        .poll(() => image.evaluate((element) => (element as HTMLImageElement).naturalWidth))
+        .toBeGreaterThan(0);
+    }
     const loadedProjectImages = await page
       .locator(".project-preview__visual--asset img")
       .evaluateAll((images) =>

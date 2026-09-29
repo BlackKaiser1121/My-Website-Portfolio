@@ -100,7 +100,13 @@ describe("design system tokens", () => {
       contrastRatio(readToken("--color-text-secondary"), readToken("--color-surface"))
     ).toBeGreaterThanOrEqual(4.5);
     expect(
+      contrastRatio(readToken("--color-text-muted"), readToken("--color-panel"))
+    ).toBeGreaterThanOrEqual(4.5);
+    expect(
       contrastRatio(readToken("--color-accent"), readToken("--color-background"))
     ).toBeGreaterThanOrEqual(4.5);
+    expect(
+      contrastRatio(readToken("--color-border-focus"), readToken("--color-background"))
+    ).toBeGreaterThanOrEqual(3);
   });
 });

@@ -27,8 +27,8 @@ Venora, FAHAD, and ResumeBridge.
 
 The Venora, FAHAD, and ResumeBridge source repositories are not cloned inside this
 portfolio workspace. Public repository and deployment URLs were supplied in the
-approved content phase and are treated as verified links, but this audit does
-not claim a fresh repository code review.
+approved content phase. The production-readiness audit rechecked their public
+availability; it does not claim a repository code review.
 
 ## Classification Rules
 
@@ -57,7 +57,7 @@ not claim a fresh repository code review.
 | Target roles: customers, venue owners, suppliers, administrators | Approved brief | Use as target users. |
 | Venue and supplier discovery, profile surfaces, location or map functionality | Approved brief, homepage data | Use as implemented/responsibility area where worded cautiously. |
 | QA and UI/UX involvement | Approved brief, homepage data | Use as responsibility, not formal QA certification. |
-| Repository link | User supplied | `https://github.com/Jassim3nidad/venora`. |
+| Repository link | User supplied, public GitHub repository | `https://github.com/Jassim3nidad/venora`. |
 | Public deployment link | User supplied | `https://venora-web.vercel.app/`. |
 | Screenshots | User supplied | Four mobile screens are verified: landing search, about overview, venue listing showing Amorita Resort, and supplier listing showing Sai's Photography. |
 

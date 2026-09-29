@@ -13,6 +13,23 @@ const homepageSections = [
 ];
 
 test.describe("Portfolio V2 controlled motion", () => {
+  test("keyboard users can skip the intro and reach main content", async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.clear());
+    await page.goto("./", { waitUntil: "domcontentloaded" });
+
+    await expect(page.locator("[data-init-sequence]")).toHaveAttribute("data-init-state", "active");
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("link", { name: "Skip to main content" })).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("button", { name: "Skip initialization sequence" })).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("[data-init-sequence]")).toHaveAttribute(
+      "data-init-state",
+      "complete"
+    );
+    await expect(page.locator("#main")).toBeFocused();
+  });
+
   test("shows a skippable first-entry initialization sequence without blocking content", async ({
     page
   }) => {
@@ -31,6 +48,11 @@ test.describe("Portfolio V2 controlled motion", () => {
     await expect(page.getByRole("link", { name: "Profile", exact: true })).toBeVisible();
 
     await page.getByRole("link", { name: "Open Venora case study" }).click();
+    await expect(page.locator("[data-init-sequence]")).toHaveAttribute(
+      "data-init-state",
+      "complete"
+    );
+    await page.reload();
     await expect(page.locator("[data-init-sequence]")).toHaveAttribute(
       "data-init-state",
       "complete"

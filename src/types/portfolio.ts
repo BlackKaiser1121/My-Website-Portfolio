@@ -114,7 +114,7 @@ export interface CaseStudySeo {
   title: string;
   description: string;
   canonicalPath: `/projects/${string}/`;
-  ogImage?: CaseStudyImage;
+  ogImage?: string;
 }
 
 export interface CaseStudyNavigationItem {

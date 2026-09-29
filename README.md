@@ -1,8 +1,8 @@
 # Jared Baquirin Portfolio V2
 
-Portfolio V2 is being migrated from static `index.html` and `style.css` to a static-first Astro portfolio. The active toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path.
+Portfolio V2 is a static-first Astro portfolio for Jared Baquirin. The active toolchain is Astro, TypeScript, Astro content collections, pnpm, and GitHub Pages with the `/My-Website-Portfolio` base path. The legacy root `index.html` and `style.css` remain tracked for rollback.
 
-The current phase implements the static homepage structure, typed portfolio content, selected project previews, dedicated case-study routes for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, accessible screenshot handling, a controlled GSAP motion layer, an optional first-entry initialization sequence, and refined CSS/SVG celestial polish. It does not implement WebGL, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, smooth-scroll libraries, page transitions, or a 3D planet.
+The site includes typed homepage content, selected project previews, dedicated case studies for Venora, FAHAD, and ResumeBridge, reusable architecture diagrams, a controlled GSAP motion layer, a skippable first-entry initialization sequence, and CSS/SVG celestial visuals. It does not use WebGL, Three.js, React Three Fiber, Drei, Lenis, Framer Motion, Anime.js, smooth-scroll libraries, page transitions, or a 3D planet.
 
 ## Commands
 
@@ -15,6 +15,7 @@ The current phase implements the static homepage structure, typed portfolio cont
 | Format check                       | `pnpm format`                    |
 | Unit tests                         | `pnpm test`                      |
 | End-to-end and accessibility tests | `pnpm test:e2e`                  |
+| Cross-browser release smoke        | `pnpm test:cross-browser`        |
 | Production build                   | `pnpm build`                     |
 | Production preview                 | `pnpm preview --port 4322`       |
 
@@ -29,7 +30,7 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - `prettier`: formatting checks.
 - `prettier-plugin-astro`: explicit Astro file formatting support.
 - `vitest`: unit tests for typed content and architecture guards.
-- `@playwright/test`: browser validation across the GitHub Pages base path.
+- `@playwright/test`: browser validation across the GitHub Pages base path. The separate cross-browser command requires installed Playwright Firefox and WebKit binaries.
 - `@axe-core/playwright`: automated accessibility smoke testing.
 - `gsap`: controlled hero, section, project-preview, architecture, planet, and case-study motion.
 - `cross-env`: disables Astro telemetry consistently across Windows and CI scripts.
@@ -45,7 +46,7 @@ After previewing on port `4322`, open `http://localhost:4322/My-Website-Portfoli
 - Mobile navigation behavior: `src/scripts/navigation.ts`
 - Font strategy: `public/assets/fonts/README.md`
 - Static hero: `src/components/hero/HeroSection.astro`
-- Static planet placeholder: `src/components/hero/StaticPlanet.astro`
+- Static CSS/SVG planet: `src/components/hero/StaticPlanet.astro`
 - Project preview component: `src/components/projects/ProjectPreview.astro`
 - Motion tokens: `src/styles/tokens.css`
 - Motion stylesheet: `src/styles/motion.css`
@@ -68,11 +69,19 @@ The palette uses near-black, graphite, soft-white text, and electric green as a 
 
 ## Deployment
 
-The repository now includes `.github/workflows/deploy.yml` for GitHub Pages. The workflow installs dependencies, installs the Chromium browser for Playwright, runs linting, unit tests, and end-to-end checks, then uploads `dist`.
+The repository includes `.github/workflows/deploy.yml` for GitHub Pages. The workflow installs frozen dependencies, installs Chromium for Playwright, runs formatting, linting, type checking, unit tests, and production-preview end-to-end checks, then uploads `dist`.
 
 The workflow deploys only when the Git ref is `main`. Manual `workflow_dispatch` runs from other branches can validate the foundation without publishing it. This branch has not been deployed by Codex.
 
 The local Playwright config uses installed Chrome on Windows when not running in CI. The GitHub Pages workflow installs Playwright Chromium before running E2E tests.
+
+## Accessibility And SEO
+
+Semantic page landmarks, one meaningful `h1` per route, accessible desktop/mobile navigation, keyboard focus styling, text alternatives, reduced-motion support, and static no-JavaScript content are covered by focused Playwright and axe checks. The intro Skip control is keyboard reachable and restores focus to main content.
+
+The build generates four public canonical routes, `sitemap.xml`, a project-path `robots.txt`, and a static noindex 404 page. Each route has unique metadata, JSON-LD, and a static social preview image. Canonicals and public assets use the configured GitHub Pages repository base path. The project-path `robots.txt` does not control the GitHub Pages host-root crawler policy; that hosting limitation is not a pre-release blocker.
+
+The release audit and remaining verification limits are recorded in `docs/portfolio-v2/production-readiness.md`; changes are summarized in `docs/portfolio-v2/release-notes.md`.
 
 ## Migration Status
 
@@ -100,3 +109,5 @@ The local Playwright config uses installed Chrome on Windows when not running in
 - Additional measured project results are still missing.
 - FAHAD has no web deployment link because it is an Android application, so it is intentionally rendered without a live-demo anchor.
 - ResumeBridge has no deployment link and has known system fixes pending before it should be presented as a stable public deployment.
+- Venora repository and live-demo actions are available at their supplied URLs.
+- LinkedIn blocked automated public verification. The user-supplied URL remains and needs a recorded normal-browser check before production release.

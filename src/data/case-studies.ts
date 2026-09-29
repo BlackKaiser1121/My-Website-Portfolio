@@ -298,7 +298,7 @@ export const projectCaseStudies = [
       description:
         "Case study for Venora, a Next.js and Supabase event venue and supplier platform covering auth, role guards, profiles, QA, and UI/UX.",
       canonicalPath: "/projects/venora/",
-      ogImage: venoraScreenshot
+      ogImage: "assets/social/venora.png"
     },
     published: true,
     order: 1
@@ -541,7 +541,7 @@ export const projectCaseStudies = [
       description:
         "Case study for FAHAD, an offline Flutter app using TensorFlow Lite and a Vision Transformer workflow for static-image verification.",
       canonicalPath: "/projects/fahad/",
-      ogImage: fahadScreenshot
+      ogImage: "assets/social/fahad.png"
     },
     published: true,
     order: 2
@@ -784,7 +784,7 @@ export const projectCaseStudies = [
       description:
         "Case study for ResumeBridge, a PHP and MySQL AI resume analyzer using Qwen API integration for scoring, gaps, and keyword feedback.",
       canonicalPath: "/projects/resumebridge/",
-      ogImage: resumeBridgeScreenshot
+      ogImage: "assets/social/resumebridge.png"
     },
     published: true,
     order: 3

@@ -167,6 +167,7 @@ describe("portfolio content data", () => {
     });
     expect(venora?.screenshots).toEqual(expectedScreenshots);
     expect(venora?.missingContent).not.toContain("project-screenshots");
+    expect(venora?.missingContent).not.toContain("repository-url");
 
     for (const screenshot of expectedScreenshots) {
       const screenshotPath = new URL(`../../public/${screenshot.src}`, import.meta.url);

@@ -12,6 +12,7 @@
     "format": "prettier --check .",
     "test": "vitest run",
     "test:e2e": "pnpm run build && playwright test",
+    "test:cross-browser": "pnpm run build && cross-env CROSS_BROWSER_QA=1 playwright test tests/e2e/cross-browser.spec.ts --workers=1 --timeout=60000",
     "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview --host localhost"
   },

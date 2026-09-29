@@ -31,7 +31,7 @@ const withBasePath = (src: string): string =>
               alt={`${projectTitle} gallery image: ${image.caption}`}
               width={image.width}
               height={image.height}
-              loading={index === 0 ? "eager" : "lazy"}
+              loading="lazy"
               decoding="async"
             />
             <figcaption>{image.caption}</figcaption>

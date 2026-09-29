@@ -57,8 +57,12 @@ export function initInitializationSequence({ preference }: InitializationOptions
   const { gsap } = ensureGsapPlugins();
   const steps = Array.from(sequence.querySelectorAll<HTMLElement>("[data-init-step]"));
   const complete = (): void => {
+    const skipHadFocus = document.activeElement === skip;
     markStorageComplete();
     setIntroState(root, sequence, "complete");
+    if (skipHadFocus) {
+      document.querySelector<HTMLElement>("#main")?.focus({ preventScroll: true });
+    }
   };
   const timeline = gsap.timeline({
     defaults: { duration: 0.22, ease: "power2.out" }

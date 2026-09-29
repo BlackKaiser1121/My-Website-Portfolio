@@ -10,11 +10,41 @@ import SelectedProjectsSection from "../components/sections/SelectedProjectsSect
 import HeroSection from "../components/hero/HeroSection.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageShell from "../components/layout/PageShell.astro";
+import { profile } from "../data/profile";
+import { absolutePublicUrl } from "../utils/public-url";
+
+if (!Astro.site) {
+  throw new Error("Astro site must be configured for production URLs.");
+}
+
+const homeUrl = absolutePublicUrl("/", Astro.site);
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: homeUrl,
+    jobTitle: "Full-Stack Developer",
+    sameAs: [
+      "https://github.com/BlackKaiser1121",
+      "https://www.linkedin.com/in/jared-baquirin-32679a384/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Jared Baquirin Portfolio",
+    url: homeUrl,
+    description: profile.valueStatement
+  }
+];
 ---
 
 <BaseLayout
   title="Jared Baquirin - Full-Stack Developer, QA, UI/UX"
-  description="Static Portfolio V2 homepage for Jared Baquirin, focused on full-stack development, QA, UI/UX, and verified project work."
+  description="Explore Jared Baquirin's full-stack, QA, and UI/UX work through Venora, FAHAD, and ResumeBridge project case studies."
+  ogImage="assets/social/portfolio-home.png"
+  structuredData={structuredData}
 >
   <PageShell>
     <HeroSection />

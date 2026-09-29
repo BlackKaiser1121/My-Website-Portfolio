@@ -46,6 +46,25 @@ const responsiveViewports = [
 ];
 
 test.describe("Portfolio V2 case-study routes", () => {
+  test("Venora repository and live demo are separate keyboard-accessible actions", async ({
+    page
+  }) => {
+    await page.goto("projects/venora/");
+
+    const back = page.getByRole("link", { name: "Back to selected projects" });
+    const repository = page.getByRole("link", { name: "Open Venora repository" });
+    const liveDemo = page.getByRole("link", { name: "Open Venora live demo" });
+
+    await expect(repository).toHaveAttribute("href", "https://github.com/Jassim3nidad/venora");
+    await expect(liveDemo).toHaveAttribute("href", "https://venora-web.vercel.app/");
+    await expect(page.locator(".project-actions a a")).toHaveCount(0);
+    await back.focus();
+    await page.keyboard.press("Tab");
+    await expect(repository).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(liveDemo).toBeFocused();
+  });
+
   for (const caseStudy of caseStudies) {
     test(`${caseStudy.title} renders a dedicated accessible case-study page`, async ({ page }) => {
       await page.goto(`projects/${caseStudy.slug}/`);
@@ -58,9 +77,15 @@ test.describe("Portfolio V2 case-study routes", () => {
         "href",
         "../../#projects"
       );
-      await expect(
-        page.getByRole("link", { name: `Open ${caseStudy.title} repository` })
-      ).toHaveAttribute("href", caseStudy.repository);
+      if (caseStudy.repository) {
+        await expect(
+          page.getByRole("link", { name: `Open ${caseStudy.title} repository` })
+        ).toHaveAttribute("href", caseStudy.repository);
+      } else {
+        await expect(
+          page.getByRole("link", { name: `Open ${caseStudy.title} repository` })
+        ).toHaveCount(0);
+      }
 
       if (caseStudy.live) {
         await expect(
@@ -136,7 +161,7 @@ test.describe("Portfolio V2 case-study routes", () => {
       );
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
         "content",
-        new RegExp(`/My-Website-Portfolio/assets/projects/`)
+        new RegExp(`/My-Website-Portfolio/assets/social/${caseStudy.slug}\\.png$`)
       );
     });
   }

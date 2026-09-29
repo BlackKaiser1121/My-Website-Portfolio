@@ -8,6 +8,7 @@ import CaseStudySectionComponent from "./CaseStudySection.astro";
 import ProjectArchitectureDiagram from "./ProjectArchitectureDiagram.astro";
 import ProjectGallery from "./ProjectGallery.astro";
 import type { CaseStudySection, ProjectCaseStudy } from "../../types/portfolio";
+import { absolutePublicUrl } from "../../utils/public-url";
 
 interface Props {
   caseStudy: ProjectCaseStudy;
@@ -19,14 +20,16 @@ const contactEmail = contactChannels.find((channel) => channel.icon === "mail");
 const heroImage = caseStudy.screenshots[0];
 const withBasePath = (src: string): string =>
   `${import.meta.env.BASE_URL.replace(/\/?$/, "/")}${src.replace(/^\//, "")}`;
-const siteUrl = "https://blackkaiser1121.github.io";
-const canonicalUrl = `${siteUrl}${import.meta.env.BASE_URL.replace(/\/$/, "")}${
-  caseStudy.seo.canonicalPath
-}`;
+if (!Astro.site) {
+  throw new Error("Astro site must be configured for production URLs.");
+}
+
+const canonicalUrl = absolutePublicUrl(caseStudy.seo.canonicalPath, Astro.site);
+const structuredImage = caseStudy.seo.ogImage ?? heroImage?.src;
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  name: caseStudy.title,
+  name: `${caseStudy.title} case study`,
   headline: caseStudy.seo.title,
   description: caseStudy.seo.description,
   url: canonicalUrl,
@@ -35,9 +38,8 @@ const structuredData = {
     name: profile.name,
     url: "https://github.com/BlackKaiser1121"
   },
-  codeRepository: caseStudy.repositoryUrl,
-  programmingLanguage: caseStudy.technologies,
-  image: heroImage ? `${siteUrl}${withBasePath(heroImage.src)}` : undefined
+  about: caseStudy.title,
+  image: structuredImage ? absolutePublicUrl(structuredImage, Astro.site) : undefined
 };
 
 const sections: readonly CaseStudySection[] = [
@@ -74,7 +76,7 @@ const outlineItems = [
   title={caseStudy.seo.title}
   description={caseStudy.seo.description}
   canonicalPath={caseStudy.seo.canonicalPath}
-  ogImage={caseStudy.seo.ogImage?.src}
+  ogImage={caseStudy.seo.ogImage}
   ogType="article"
   structuredData={structuredData}
 >

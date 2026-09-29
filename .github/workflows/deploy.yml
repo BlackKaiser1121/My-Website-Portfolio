@@ -1,4 +1,4 @@
-name: Deploy Portfolio V2 Foundation
+name: Validate and Deploy Portfolio V2
 
 on:
   push:
@@ -39,8 +39,14 @@ jobs:
       - name: Install Playwright browser
         run: pnpm exec playwright install --with-deps chromium
 
+      - name: Format check
+        run: pnpm run format
+
       - name: Lint
         run: pnpm run lint
+
+      - name: Type check
+        run: pnpm run type-check
 
       - name: Unit tests
         run: pnpm run test
